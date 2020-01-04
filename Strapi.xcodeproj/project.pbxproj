@@ -20,6 +20,8 @@
 		4703DE3E23C1111700B48BB7 /* DestroyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4703DE3D23C1111700B48BB7 /* DestroyRequest.swift */; };
 		4703DE4023C1116E00B48BB7 /* DestroyRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4703DE3F23C1116E00B48BB7 /* DestroyRequestTests.swift */; };
 		4703DE4323C1211100B48BB7 /* URLRequest+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4703DE4123C114A400B48BB7 /* URLRequest+Extension.swift */; };
+		4703DE4523C1257F00B48BB7 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4703DE4423C1257F00B48BB7 /* Response.swift */; };
+		4703DE4723C1285F00B48BB7 /* ResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4703DE4623C1285F00B48BB7 /* ResponseTests.swift */; };
 		4769A88823C0CEA200104F24 /* Strapi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4769A87E23C0CEA200104F24 /* Strapi.framework */; };
 		4769A88D23C0CEA200104F24 /* StrapiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4769A88C23C0CEA200104F24 /* StrapiTests.swift */; };
 		4769A88F23C0CEA200104F24 /* Strapi.h in Headers */ = {isa = PBXBuildFile; fileRef = 4769A88123C0CEA200104F24 /* Strapi.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -54,6 +56,8 @@
 		4703DE3D23C1111700B48BB7 /* DestroyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestroyRequest.swift; sourceTree = "<group>"; };
 		4703DE3F23C1116E00B48BB7 /* DestroyRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestroyRequestTests.swift; sourceTree = "<group>"; };
 		4703DE4123C114A400B48BB7 /* URLRequest+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extension.swift"; sourceTree = "<group>"; };
+		4703DE4423C1257F00B48BB7 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		4703DE4623C1285F00B48BB7 /* ResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseTests.swift; sourceTree = "<group>"; };
 		4769A87E23C0CEA200104F24 /* Strapi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Strapi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4769A88123C0CEA200104F24 /* Strapi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Strapi.h; sourceTree = "<group>"; };
 		4769A88223C0CEA200104F24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -109,6 +113,7 @@
 		4703DE2723C10B7B00B48BB7 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
+				4703DE4423C1257F00B48BB7 /* Response.swift */,
 				4769A8EB23C0E68600104F24 /* Request.swift */,
 				4703DE2823C10B8B00B48BB7 /* CreateRequest.swift */,
 				4703DE2D23C10CF000B48BB7 /* CountRequest.swift */,
@@ -123,6 +128,7 @@
 		4703DE2A23C10BE000B48BB7 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
+				4703DE4623C1285F00B48BB7 /* ResponseTests.swift */,
 				4769A8ED23C0E6AD00104F24 /* RequestTests.swift */,
 				4703DE2B23C10C4700B48BB7 /* CreateRequestTests.swift */,
 				4703DE2F23C10D6200B48BB7 /* CountRequestTests.swift */,
@@ -285,6 +291,7 @@
 				4769A8C223C0D04A00104F24 /* Strapi.swift in Sources */,
 				4703DE3A23C10F8F00B48BB7 /* UpdateRequest.swift in Sources */,
 				4703DE2E23C10CF000B48BB7 /* CountRequest.swift in Sources */,
+				4703DE4523C1257F00B48BB7 /* Response.swift in Sources */,
 				4769A8EC23C0E68600104F24 /* Request.swift in Sources */,
 				4703DE3623C10ED700B48BB7 /* FetchRequest.swift in Sources */,
 				4703DE3E23C1111700B48BB7 /* DestroyRequest.swift in Sources */,
@@ -306,6 +313,7 @@
 				4703DE3023C10D6200B48BB7 /* CountRequestTests.swift in Sources */,
 				4769A8F223C0FB5700104F24 /* MethodTests.swift in Sources */,
 				4703DE2C23C10C4700B48BB7 /* CreateRequestTests.swift in Sources */,
+				4703DE4723C1285F00B48BB7 /* ResponseTests.swift in Sources */,
 				4703DE3823C10F1E00B48BB7 /* FetchRequestTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

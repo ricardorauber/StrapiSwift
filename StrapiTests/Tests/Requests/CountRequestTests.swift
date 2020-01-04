@@ -36,7 +36,7 @@ class CountRequestTests: XCTestCase {
 			contentType: contentType
 		)
 		
-		let task = strapi.exec(request: request, needAuthentication: false, autoExecute: false)
+		let task = strapi.exec(request: request, needAuthentication: false, autoExecute: false) { _ in }
 		XCTAssertNotNil(task)
 		let urlRequest = task?.currentRequest
 		XCTAssertNotNil(urlRequest)

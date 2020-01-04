@@ -35,7 +35,6 @@ public class Request {
 				contentType: String,
 				path: String? = nil,
 				parameters: [String: Codable]? = nil) {
-		
 		self.method = method
 		self.contentType = contentType
 		self.path = path

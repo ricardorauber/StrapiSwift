@@ -36,7 +36,7 @@ class QueryRequestTests: XCTestCase {
 			contentType: contentType
 		)
 		
-		let task = strapi.exec(request: request, needAuthentication: false, autoExecute: false)
+		let task = strapi.exec(request: request, needAuthentication: false, autoExecute: false) { _ in }
 		XCTAssertNotNil(task)
 		let urlRequest = task?.currentRequest
 		XCTAssertNotNil(urlRequest)
@@ -59,7 +59,7 @@ class QueryRequestTests: XCTestCase {
 		)
 		request.filter(by: filterKey, contains: filterValue)
 		
-		let task = strapi.exec(request: request, needAuthentication: false, autoExecute: false)
+		let task = strapi.exec(request: request, needAuthentication: false, autoExecute: false) { _ in }
 		XCTAssertNotNil(task)
 		let urlRequest = task?.currentRequest
 		XCTAssertNotNil(urlRequest)
@@ -82,7 +82,7 @@ class QueryRequestTests: XCTestCase {
 		)
 		request.filter(by: filterKey, in: filterValue)
 		
-		let task = strapi.exec(request: request, needAuthentication: false, autoExecute: false)
+		let task = strapi.exec(request: request, needAuthentication: false, autoExecute: false) { _ in }
 		XCTAssertNotNil(task)
 		let urlRequest = task?.currentRequest
 		XCTAssertNotNil(urlRequest)
@@ -105,7 +105,7 @@ class QueryRequestTests: XCTestCase {
 		)
 		request.sort(by: sortingKey)
 		
-		let task = strapi.exec(request: request, needAuthentication: false, autoExecute: false)
+		let task = strapi.exec(request: request, needAuthentication: false, autoExecute: false) { _ in }
 		XCTAssertNotNil(task)
 		let urlRequest = task?.currentRequest
 		XCTAssertNotNil(urlRequest)

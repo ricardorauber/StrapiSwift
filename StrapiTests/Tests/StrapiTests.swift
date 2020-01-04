@@ -32,7 +32,7 @@ class StrapiTests: XCTestCase {
 		let request = QueryRequest(
 			contentType: "restaurants"
 		)
-		let task = strapi.exec(request: request, needAuthentication: true, autoExecute: false)
+		let task = strapi.exec(request: request, needAuthentication: true, autoExecute: false) { _ in }
 		XCTAssertNil(task)
 	}
 	
@@ -42,7 +42,41 @@ class StrapiTests: XCTestCase {
 			method: "",
 			contentType: ""
 		)
-		let task = strapi.exec(request: request, needAuthentication: false, autoExecute: false)
+		let task = strapi.exec(request: request, needAuthentication: false, autoExecute: false) { _ in }
 		XCTAssertNil(task)
+	}
+	
+	func testInexistantHost() {
+		let testExpectation = self.expectation(description: "Tests")
+		let strapi = Strapi(scheme: "https", host: "localhost", port: 1337)
+		let request = QueryRequest(
+			contentType: "restaurants"
+		)
+		let task = strapi.exec(request: request, needAuthentication: false, autoExecute: true) { response in
+			XCTAssertEqual(response.code, -1)
+			XCTAssertNil(response.error)
+			XCTAssertNil(response.data)
+			testExpectation.fulfill()
+		}
+		XCTAssertNotNil(task)
+		let waiterResult = XCTWaiter.wait(for: [testExpectation], timeout: 3)
+		XCTAssertEqual(waiterResult, .completed)
+	}
+	
+	func testInvalidHost() {
+		let testExpectation = self.expectation(description: "Tests")
+		let strapi = Strapi(scheme: "http", host: "google.com")
+		let request = QueryRequest(
+			contentType: "restaurants"
+		)
+		let task = strapi.exec(request: request, needAuthentication: false, autoExecute: true) { response in
+			XCTAssertEqual(response.code, 404)
+			XCTAssertNil(response.error)
+			XCTAssertNotNil(response.data)
+			testExpectation.fulfill()
+		}
+		XCTAssertNotNil(task)
+		let waiterResult = XCTWaiter.wait(for: [testExpectation], timeout: 10)
+		XCTAssertEqual(waiterResult, .completed)
 	}
 }

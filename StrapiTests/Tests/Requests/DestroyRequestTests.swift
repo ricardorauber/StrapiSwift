@@ -42,7 +42,7 @@ class DestroyRequestTests: XCTestCase {
 			id: id
 		)
 		
-		let task = strapi.exec(request: request, needAuthentication: true, autoExecute: false)
+		let task = strapi.exec(request: request, needAuthentication: true, autoExecute: false) { _ in }
 		XCTAssertNotNil(task)
 		let urlRequest = task?.currentRequest
 		XCTAssertNotNil(urlRequest)
