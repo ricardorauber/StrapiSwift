@@ -1,11 +1,11 @@
 import UIKit
-import Strapi_iOS
+import Strapi
 
 class ViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+		print(Strapi.shared.host)
 	}
 }
 

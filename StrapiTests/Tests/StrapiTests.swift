@@ -1,7 +1,13 @@
 import XCTest
-@testable import Strapi_iOS
+@testable import Strapi
 
 class StrapiTests: XCTestCase {
+	
+	override func setUp() {
+		continueAfterFailure = false
+	}
+	
+	// MARK: - Initialization
 	
 	func testInit() {
 		let strapi = Strapi(scheme: "https", host: "localhost", port: 1337)

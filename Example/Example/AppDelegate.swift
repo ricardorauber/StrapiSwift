@@ -1,5 +1,5 @@
 import UIKit
-import Strapi_iOS
+import Strapi
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

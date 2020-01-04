@@ -7,24 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4703DE2423C10AE000B48BB7 /* Strapi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4703DE2323C10AE000B48BB7 /* Strapi.framework */; };
+		4703DE2523C10AE000B48BB7 /* Strapi.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4703DE2323C10AE000B48BB7 /* Strapi.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4769A8D323C0E48400104F24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4769A8D223C0E48400104F24 /* AppDelegate.swift */; };
 		4769A8D523C0E48400104F24 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4769A8D423C0E48400104F24 /* SceneDelegate.swift */; };
 		4769A8D723C0E48400104F24 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4769A8D623C0E48400104F24 /* ViewController.swift */; };
 		4769A8DA23C0E48400104F24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4769A8D823C0E48400104F24 /* Main.storyboard */; };
 		4769A8DC23C0E48900104F24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4769A8DB23C0E48900104F24 /* Assets.xcassets */; };
 		4769A8DF23C0E48900104F24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4769A8DD23C0E48900104F24 /* LaunchScreen.storyboard */; };
-		4769A8E823C0E4F900104F24 /* Strapi_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4769A8E723C0E4F900104F24 /* Strapi_iOS.framework */; };
-		4769A8E923C0E4F900104F24 /* Strapi_iOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4769A8E723C0E4F900104F24 /* Strapi_iOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		4769A8EA23C0E4F900104F24 /* Embed Frameworks */ = {
+		4703DE2623C10AE000B48BB7 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4769A8E923C0E4F900104F24 /* Strapi_iOS.framework in Embed Frameworks */,
+				4703DE2523C10AE000B48BB7 /* Strapi.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -32,6 +32,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4703DE2323C10AE000B48BB7 /* Strapi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Strapi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4769A8CF23C0E48400104F24 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4769A8D223C0E48400104F24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4769A8D423C0E48400104F24 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -40,7 +41,6 @@
 		4769A8DB23C0E48900104F24 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4769A8DE23C0E48900104F24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4769A8E023C0E48900104F24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4769A8E723C0E4F900104F24 /* Strapi_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Strapi_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,7 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4769A8E823C0E4F900104F24 /* Strapi_iOS.framework in Frameworks */,
+				4703DE2423C10AE000B48BB7 /* Strapi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,7 +89,7 @@
 		4769A8E623C0E4F900104F24 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4769A8E723C0E4F900104F24 /* Strapi_iOS.framework */,
+				4703DE2323C10AE000B48BB7 /* Strapi.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -104,7 +104,7 @@
 				4769A8CB23C0E48400104F24 /* Sources */,
 				4769A8CC23C0E48400104F24 /* Frameworks */,
 				4769A8CD23C0E48400104F24 /* Resources */,
-				4769A8EA23C0E4F900104F24 /* Embed Frameworks */,
+				4703DE2623C10AE000B48BB7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
