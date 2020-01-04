@@ -11,6 +11,8 @@
 		4703DE2C23C10C4700B48BB7 /* CreateRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4703DE2B23C10C4700B48BB7 /* CreateRequestTests.swift */; };
 		4703DE2E23C10CF000B48BB7 /* CountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4703DE2D23C10CF000B48BB7 /* CountRequest.swift */; };
 		4703DE3023C10D6200B48BB7 /* CountRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4703DE2F23C10D6200B48BB7 /* CountRequestTests.swift */; };
+		4703DE3223C10E3000B48BB7 /* QueryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4703DE3123C10E3000B48BB7 /* QueryRequest.swift */; };
+		4703DE3423C10E6F00B48BB7 /* QueryRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4703DE3323C10E6F00B48BB7 /* QueryRequestTests.swift */; };
 		4769A88823C0CEA200104F24 /* Strapi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4769A87E23C0CEA200104F24 /* Strapi.framework */; };
 		4769A88D23C0CEA200104F24 /* StrapiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4769A88C23C0CEA200104F24 /* StrapiTests.swift */; };
 		4769A88F23C0CEA200104F24 /* Strapi.h in Headers */ = {isa = PBXBuildFile; fileRef = 4769A88123C0CEA200104F24 /* Strapi.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -36,6 +38,8 @@
 		4703DE2B23C10C4700B48BB7 /* CreateRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRequestTests.swift; sourceTree = "<group>"; };
 		4703DE2D23C10CF000B48BB7 /* CountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountRequest.swift; sourceTree = "<group>"; };
 		4703DE2F23C10D6200B48BB7 /* CountRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountRequestTests.swift; sourceTree = "<group>"; };
+		4703DE3123C10E3000B48BB7 /* QueryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryRequest.swift; sourceTree = "<group>"; };
+		4703DE3323C10E6F00B48BB7 /* QueryRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryRequestTests.swift; sourceTree = "<group>"; };
 		4769A87E23C0CEA200104F24 /* Strapi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Strapi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4769A88123C0CEA200104F24 /* Strapi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Strapi.h; sourceTree = "<group>"; };
 		4769A88223C0CEA200104F24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -94,6 +98,7 @@
 				4769A8EB23C0E68600104F24 /* Request.swift */,
 				4703DE2823C10B8B00B48BB7 /* CreateRequest.swift */,
 				4703DE2D23C10CF000B48BB7 /* CountRequest.swift */,
+				4703DE3123C10E3000B48BB7 /* QueryRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -104,6 +109,7 @@
 				4769A8ED23C0E6AD00104F24 /* RequestTests.swift */,
 				4703DE2B23C10C4700B48BB7 /* CreateRequestTests.swift */,
 				4703DE2F23C10D6200B48BB7 /* CountRequestTests.swift */,
+				4703DE3323C10E6F00B48BB7 /* QueryRequestTests.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -254,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4703DE3223C10E3000B48BB7 /* QueryRequest.swift in Sources */,
 				4769A8C223C0D04A00104F24 /* Strapi.swift in Sources */,
 				4703DE2E23C10CF000B48BB7 /* CountRequest.swift in Sources */,
 				4769A8EC23C0E68600104F24 /* Request.swift in Sources */,
@@ -268,6 +275,7 @@
 			files = (
 				4769A88D23C0CEA200104F24 /* StrapiTests.swift in Sources */,
 				4769A8EE23C0E6AD00104F24 /* RequestTests.swift in Sources */,
+				4703DE3423C10E6F00B48BB7 /* QueryRequestTests.swift in Sources */,
 				4703DE3023C10D6200B48BB7 /* CountRequestTests.swift in Sources */,
 				4769A8F223C0FB5700104F24 /* MethodTests.swift in Sources */,
 				4703DE2C23C10C4700B48BB7 /* CreateRequestTests.swift in Sources */,
