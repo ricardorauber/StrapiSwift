@@ -4,7 +4,8 @@ import Foundation
 public class QueryRequest: Request {
 	
 	/// Instantiate a new object
-	/// - Parameter contentType: Strapi Content Type
+	/// - Parameters:
+	///   - contentType: Strapi Content Type
 	public init(contentType: String) {
 		super.init(method: "GET", contentType: contentType)
 	}
