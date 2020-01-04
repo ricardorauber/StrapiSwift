@@ -19,6 +19,7 @@
 		4703DE3C23C1108E00B48BB7 /* UpdateRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4703DE3B23C1108E00B48BB7 /* UpdateRequestTests.swift */; };
 		4703DE3E23C1111700B48BB7 /* DestroyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4703DE3D23C1111700B48BB7 /* DestroyRequest.swift */; };
 		4703DE4023C1116E00B48BB7 /* DestroyRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4703DE3F23C1116E00B48BB7 /* DestroyRequestTests.swift */; };
+		4703DE4323C1211100B48BB7 /* URLRequest+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4703DE4123C114A400B48BB7 /* URLRequest+Extension.swift */; };
 		4769A88823C0CEA200104F24 /* Strapi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4769A87E23C0CEA200104F24 /* Strapi.framework */; };
 		4769A88D23C0CEA200104F24 /* StrapiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4769A88C23C0CEA200104F24 /* StrapiTests.swift */; };
 		4769A88F23C0CEA200104F24 /* Strapi.h in Headers */ = {isa = PBXBuildFile; fileRef = 4769A88123C0CEA200104F24 /* Strapi.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -52,6 +53,7 @@
 		4703DE3B23C1108E00B48BB7 /* UpdateRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRequestTests.swift; sourceTree = "<group>"; };
 		4703DE3D23C1111700B48BB7 /* DestroyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestroyRequest.swift; sourceTree = "<group>"; };
 		4703DE3F23C1116E00B48BB7 /* DestroyRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestroyRequestTests.swift; sourceTree = "<group>"; };
+		4703DE4123C114A400B48BB7 /* URLRequest+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extension.swift"; sourceTree = "<group>"; };
 		4769A87E23C0CEA200104F24 /* Strapi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Strapi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4769A88123C0CEA200104F24 /* Strapi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Strapi.h; sourceTree = "<group>"; };
 		4769A88223C0CEA200104F24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				4769A88E23C0CEA200104F24 /* Info.plist */,
+				4703DE4123C114A400B48BB7 /* URLRequest+Extension.swift */,
 				4703DE2223C10A9B00B48BB7 /* Tests */,
 			);
 			path = StrapiTests;
@@ -299,6 +302,7 @@
 				4703DE4023C1116E00B48BB7 /* DestroyRequestTests.swift in Sources */,
 				4703DE3C23C1108E00B48BB7 /* UpdateRequestTests.swift in Sources */,
 				4703DE3423C10E6F00B48BB7 /* QueryRequestTests.swift in Sources */,
+				4703DE4323C1211100B48BB7 /* URLRequest+Extension.swift in Sources */,
 				4703DE3023C10D6200B48BB7 /* CountRequestTests.swift in Sources */,
 				4769A8F223C0FB5700104F24 /* MethodTests.swift in Sources */,
 				4703DE2C23C10C4700B48BB7 /* CreateRequestTests.swift in Sources */,

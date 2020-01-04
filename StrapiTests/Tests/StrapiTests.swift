@@ -24,4 +24,25 @@ class StrapiTests: XCTestCase {
 		XCTAssertNil(strapi.port)
 		XCTAssertNil(strapi.token)
 	}
+	
+	// MARK: - Edge cases
+	
+	func testRequestWithoutTokenNeedingAuthorization() {
+		let strapi = Strapi(scheme: "https", host: "localhost", port: 1337)
+		let request = QueryRequest(
+			contentType: "restaurants"
+		)
+		let task = strapi.exec(request: request, needAuthentication: true, autoExecute: false)
+		XCTAssertNil(task)
+	}
+	
+	func testEmptyRequest() {
+		let strapi = Strapi(scheme: "", host: "")
+		let request = Request(
+			method: "",
+			contentType: ""
+		)
+		let task = strapi.exec(request: request, needAuthentication: false, autoExecute: false)
+		XCTAssertNil(task)
+	}
 }

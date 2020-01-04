@@ -12,15 +12,43 @@ class FetchRequestTests: XCTestCase {
 	func testInit() {
 		let contentType = "restaurants"
 		let id = 10
+		
 		let request = FetchRequest(
 			contentType: contentType,
 			id: id
 		)
+		
 		XCTAssertEqual(request.method, "GET")
 		XCTAssertEqual(request.contentType, contentType)
 		XCTAssertEqual(request.path, "/\(id)")
 		XCTAssertEqual(request.parameters.count, 0)
 		XCTAssertEqual(request.inNotIn.count, 0)
 		XCTAssertEqual(request.sortingBy.count, 0)
+	}
+	
+	// MARK: - Request
+	
+	func testUrlRequest() {
+		let host = "localhost"
+		let port = 1337
+		let token = "abcde"
+		let contentType = "restaurants"
+		let id = 10
+		let strapi = Strapi(scheme: "http", host: host, port: port)
+		strapi.token = token
+		
+		let request = FetchRequest(
+			contentType: contentType,
+			id: id
+		)
+		
+		let task = strapi.exec(request: request, needAuthentication: true, autoExecute: false)
+		XCTAssertNotNil(task)
+		let urlRequest = task?.currentRequest
+		XCTAssertNotNil(urlRequest)
+		XCTAssertEqual(urlRequest!.httpMethod, "GET")
+		XCTAssertEqual(urlRequest!.url!.absoluteString, "http://\(host):\(port)/\(contentType)/\(id)")
+		XCTAssertEqual(urlRequest!.allHTTPHeaderFields, ["Content-Type": "application/json; charset=utf-8", "Authorization": "Bearer abcde"])
+		XCTAssertNil(urlRequest!.jsonString)
 	}
 }

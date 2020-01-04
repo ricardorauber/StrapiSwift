@@ -16,6 +16,7 @@ class RequestTests: XCTestCase {
 			method: method,
 			contentType: contentType
 		)
+		
 		XCTAssertEqual(request.method, method)
 		XCTAssertEqual(request.contentType, contentType)
 		XCTAssertNil(request.path)
@@ -30,12 +31,14 @@ class RequestTests: XCTestCase {
 		let path = "/id"
 		let parameterKey = "name"
 		let parameterValue = "New Name"
+		
 		let request = Request(
 			method: method,
 			contentType: contentType,
 			path: path,
 			parameters: [parameterKey: parameterValue]
 		)
+		
 		XCTAssertEqual(request.method, method)
 		XCTAssertEqual(request.contentType, contentType)
 		XCTAssertEqual(request.path, path)
@@ -52,10 +55,12 @@ class RequestTests: XCTestCase {
 		let contentType = "restaurants"
 		let parameterKey = "name"
 		let parameterValue = "New Name"
+		
 		let request = Request(
 			method: method,
 			contentType: contentType
 		)
+		
 		request.setParameter(key: parameterKey, value: parameterValue)
 		XCTAssertEqual(request.parameters.count, 1)
 		let name = request.parameters[parameterKey] as? String
@@ -71,10 +76,12 @@ class RequestTests: XCTestCase {
 		let contentType = "restaurants"
 		let parameterKey = "name"
 		let parameterValue = "New Name"
+		
 		let request = Request(
 			method: method,
 			contentType: contentType
 		)
+		
 		request.setFilter(key: parameterKey, value: parameterValue)
 		XCTAssertEqual(request.parameters.count, 1)
 		let name = request.parameters[parameterKey] as? String
@@ -88,10 +95,12 @@ class RequestTests: XCTestCase {
 		let contentType = "restaurants"
 		let parameterKey = "name"
 		let parameterValue = "New Name"
+		
 		let request = Request(
 			method: method,
 			contentType: contentType
 		)
+		
 		request.setFilter(key: parameterKey, value: parameterValue)
 		XCTAssertEqual(request.parameters.count, 0)
 		request.removeAllFilters()
@@ -104,10 +113,12 @@ class RequestTests: XCTestCase {
 		let parameterKey = "name"
 		let parameterValue = "New Name"
 		let filterSuffix = "_eq"
+		
 		let request = Request(
 			method: method,
 			contentType: contentType
 		)
+		
 		request.filter(by: parameterKey, equalTo: parameterValue)
 		XCTAssertEqual(request.parameters.count, 1)
 		let filter = request.parameters[parameterKey + filterSuffix] as? String
@@ -121,10 +132,12 @@ class RequestTests: XCTestCase {
 		let parameterKey = "name"
 		let parameterValue = "New Name"
 		let filterSuffix = "_ne"
+		
 		let request = Request(
 			method: method,
 			contentType: contentType
 		)
+		
 		request.filter(by: parameterKey, notEqualTo: parameterValue)
 		XCTAssertEqual(request.parameters.count, 1)
 		let filter = request.parameters[parameterKey + filterSuffix] as? String
@@ -138,10 +151,12 @@ class RequestTests: XCTestCase {
 		let parameterKey = "name"
 		let parameterValue = "New Name"
 		let filterSuffix = "_lt"
+		
 		let request = Request(
 			method: method,
 			contentType: contentType
 		)
+		
 		request.filter(by: parameterKey, lowerThan: parameterValue)
 		XCTAssertEqual(request.parameters.count, 1)
 		let filter = request.parameters[parameterKey + filterSuffix] as? String
@@ -155,10 +170,12 @@ class RequestTests: XCTestCase {
 		let parameterKey = "name"
 		let parameterValue = "New Name"
 		let filterSuffix = "_gt"
+		
 		let request = Request(
 			method: method,
 			contentType: contentType
 		)
+		
 		request.filter(by: parameterKey, greaterThan: parameterValue)
 		XCTAssertEqual(request.parameters.count, 1)
 		let filter = request.parameters[parameterKey + filterSuffix] as? String
@@ -172,10 +189,12 @@ class RequestTests: XCTestCase {
 		let parameterKey = "name"
 		let parameterValue = "New Name"
 		let filterSuffix = "_lte"
+		
 		let request = Request(
 			method: method,
 			contentType: contentType
 		)
+		
 		request.filter(by: parameterKey, lowerThanOrEqualTo: parameterValue)
 		XCTAssertEqual(request.parameters.count, 1)
 		let filter = request.parameters[parameterKey + filterSuffix] as? String
@@ -189,10 +208,12 @@ class RequestTests: XCTestCase {
 		let parameterKey = "name"
 		let parameterValue = "New Name"
 		let filterSuffix = "_gte"
+		
 		let request = Request(
 			method: method,
 			contentType: contentType
 		)
+		
 		request.filter(by: parameterKey, greaterThanOrEqualTo: parameterValue)
 		XCTAssertEqual(request.parameters.count, 1)
 		let filter = request.parameters[parameterKey + filterSuffix] as? String
@@ -206,10 +227,12 @@ class RequestTests: XCTestCase {
 		let parameterKey = "name"
 		let parameterValue = "New Name"
 		let filterSuffix = "_contains"
+		
 		let request = Request(
 			method: method,
 			contentType: contentType
 		)
+		
 		request.filter(by: parameterKey, contains: parameterValue)
 		XCTAssertEqual(request.parameters.count, 1)
 		let filter = request.parameters[parameterKey + filterSuffix] as? String
@@ -223,10 +246,12 @@ class RequestTests: XCTestCase {
 		let parameterKey = "name"
 		let parameterValue = "New Name"
 		let filterSuffix = "_ncontains"
+		
 		let request = Request(
 			method: method,
 			contentType: contentType
 		)
+		
 		request.filter(by: parameterKey, doesntContain: parameterValue)
 		XCTAssertEqual(request.parameters.count, 1)
 		let filter = request.parameters[parameterKey + filterSuffix] as? String
@@ -240,10 +265,12 @@ class RequestTests: XCTestCase {
 		let parameterKey = "name"
 		let parameterValue = "New Name"
 		let filterSuffix = "_containss"
+		
 		let request = Request(
 			method: method,
 			contentType: contentType
 		)
+		
 		request.filter(by: parameterKey, containsCaseSensitive: parameterValue)
 		XCTAssertEqual(request.parameters.count, 1)
 		let filter = request.parameters[parameterKey + filterSuffix] as? String
@@ -257,10 +284,12 @@ class RequestTests: XCTestCase {
 		let parameterKey = "name"
 		let parameterValue = "New Name"
 		let filterSuffix = "_ncontainss"
+		
 		let request = Request(
 			method: method,
 			contentType: contentType
 		)
+		
 		request.filter(by: parameterKey, doesntContainCaseSensitive: parameterValue)
 		XCTAssertEqual(request.parameters.count, 1)
 		let filter = request.parameters[parameterKey + filterSuffix] as? String
@@ -274,10 +303,12 @@ class RequestTests: XCTestCase {
 		let parameterKey = "name"
 		let parameterValue = true
 		let filterSuffix = "_null"
+		
 		let request = Request(
 			method: method,
 			contentType: contentType
 		)
+		
 		request.filter(by: parameterKey, isNull: parameterValue)
 		XCTAssertEqual(request.parameters.count, 1)
 		let filter = request.parameters[parameterKey + filterSuffix] as? Bool
@@ -291,10 +322,12 @@ class RequestTests: XCTestCase {
 		let parameterKey = "name"
 		let parameterValue = false
 		let filterSuffix = "_null"
+		
 		let request = Request(
 			method: method,
 			contentType: contentType
 		)
+		
 		request.filter(by: parameterKey, isNull: parameterValue)
 		XCTAssertEqual(request.parameters.count, 1)
 		let filter = request.parameters[parameterKey + filterSuffix] as? Bool
@@ -310,10 +343,12 @@ class RequestTests: XCTestCase {
 		let parameterKey = "name"
 		let parameterValue = "New Name"
 		let filterSuffix = "_in"
+		
 		let request = Request(
 			method: method,
 			contentType: contentType
 		)
+		
 		request.filter(by: parameterKey, in: parameterValue)
 		XCTAssertEqual(request.inNotIn.count, 1)
 		let filter = request.inNotIn.first
@@ -329,10 +364,12 @@ class RequestTests: XCTestCase {
 		let parameterKey = "name"
 		let parameterValue = "New Name"
 		let filterSuffix = "_nin"
+		
 		let request = Request(
 			method: method,
 			contentType: contentType
 		)
+		
 		request.filter(by: parameterKey, notIn: parameterValue)
 		XCTAssertEqual(request.inNotIn.count, 1)
 		let filter = request.inNotIn.first
@@ -342,15 +379,48 @@ class RequestTests: XCTestCase {
 		XCTAssertEqual(filterValue!, filterValue)
 	}
 	
+	func testFilterMultipleNotIns() {
+		let method = "GET"
+		let contentType = "restaurants"
+		let parameterKey1 = "price"
+		let parameterValue1 = 4
+		let parameterKey2 = "price"
+		let parameterValue2 = 5
+		let filterSuffix = "_nin"
+		
+		let request = Request(
+			method: method,
+			contentType: contentType
+		)
+		
+		request.filter(by: parameterKey1, notIn: parameterValue1)
+		XCTAssertEqual(request.inNotIn.count, 1)
+		let filter1 = request.inNotIn[0]
+		XCTAssertNotNil(filter1)
+		let filterValue1 = filter1[parameterKey1 + filterSuffix] as? Int
+		XCTAssertNotNil(filterValue1)
+		XCTAssertEqual(filterValue1!, filterValue1)
+		
+		request.filter(by: parameterKey2, notIn: parameterValue2)
+		XCTAssertEqual(request.inNotIn.count, 2)
+		let filter2 = request.inNotIn[1]
+		XCTAssertNotNil(filter2)
+		let filterValue2 = filter2[parameterKey2 + filterSuffix] as? Int
+		XCTAssertNotNil(filterValue2)
+		XCTAssertEqual(filterValue2!, filterValue2)
+	}
+	
 	func testShouldNotAddInNotInFilters() {
 		let method = "POST"
 		let contentType = "restaurants"
 		let parameterKey = "name"
 		let parameterValue = "New Name"
+		
 		let request = Request(
 			method: method,
 			contentType: contentType
 		)
+		
 		request.filter(by: parameterKey, in: parameterValue)
 		XCTAssertEqual(request.inNotIn.count, 0)
 		request.filter(by: parameterKey, notIn: parameterValue)
@@ -364,10 +434,12 @@ class RequestTests: XCTestCase {
 		let contentType = "restaurants"
 		let parameterValue = 10
 		let filterSuffix = "_limit"
+		
 		let request = Request(
 			method: method,
 			contentType: contentType
 		)
+		
 		request.limit(by: parameterValue)
 		XCTAssertEqual(request.parameters.count, 1)
 		let filter = request.parameters[filterSuffix] as? Int
@@ -380,10 +452,12 @@ class RequestTests: XCTestCase {
 		let contentType = "restaurants"
 		let parameterValue = 0
 		let filterSuffix = "_start"
+		
 		let request = Request(
 			method: method,
 			contentType: contentType
 		)
+		
 		request.start(at: parameterValue)
 		XCTAssertEqual(request.parameters.count, 1)
 		let filter = request.parameters[filterSuffix] as? Int
@@ -398,10 +472,12 @@ class RequestTests: XCTestCase {
 		let contentType = "restaurants"
 		let sortingByKey = "name"
 		let sortingByMode = "ASC"
+		
 		let request = Request(
 			method: method,
 			contentType: contentType
 		)
+		
 		request.sort(by: sortingByKey)
 		XCTAssertEqual(request.sortingBy.count, 1)
 		let sortingBy = request.sortingBy.first
@@ -417,10 +493,12 @@ class RequestTests: XCTestCase {
 		let method = "POST"
 		let contentType = "restaurants"
 		let sortingByKey = "name"
+		
 		let request = Request(
 			method: method,
 			contentType: contentType
 		)
+		
 		request.sort(by: sortingByKey)
 		XCTAssertEqual(request.sortingBy.count, 0)
 		request.removeAllSortingByItems()
@@ -434,10 +512,12 @@ class RequestTests: XCTestCase {
 		let sortingByMode1 = "ASC"
 		let sortingByKey2 = "price"
 		let sortingByMode2 = "DESC"
+		
 		let request = Request(
 			method: method,
 			contentType: contentType
 		)
+		
 		request.sort(by: sortingByKey1)
 		XCTAssertEqual(request.sortingBy.count, 1)
 		let sortingBy1 = request.sortingBy[0]
@@ -445,6 +525,7 @@ class RequestTests: XCTestCase {
 		let filter1 = sortingBy1[sortingByKey1]
 		XCTAssertNotNil(filter1)
 		XCTAssertEqual(filter1, sortingByMode1)
+		
 		request.sort(by: sortingByKey2, ascending: false)
 		XCTAssertEqual(request.sortingBy.count, 2)
 		let sortingBy2 = request.sortingBy[1]
