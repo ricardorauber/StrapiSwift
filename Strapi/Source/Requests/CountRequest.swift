@@ -7,6 +7,6 @@ public class CountRequest: Request {
 	/// - Parameters:
 	///   - contentType: Strapi Content Type
 	public init(contentType: String) {
-		super.init(method: "GET", contentType: contentType, path: "/count")
+		super.init(method: Method.GET, contentType: contentType, path: "/count")
 	}
 }

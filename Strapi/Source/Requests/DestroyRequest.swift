@@ -1,13 +1,13 @@
 import Foundation
 
-/// Request for retrieving a specific record - GET /{Content-Type}/{id}
-public class FetchRequest: Request {
+/// Request for destroying a specific record - DELETE /{Content-Type}/{id}
+public class DestroyRequest: Request {
 	
 	/// Instantiate a new object
 	/// - Parameters:
 	///   - contentType: Strapi Content Type
 	///   - id: ID of the record
 	public init(contentType: String, id: Int) {
-		super.init(method: Method.GET, contentType: contentType, path: "/\(id)")
+		super.init(method: Method.DELETE, contentType: contentType, path: "/\(id)")
 	}
 }

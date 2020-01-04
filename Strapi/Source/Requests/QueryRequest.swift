@@ -7,6 +7,6 @@ public class QueryRequest: Request {
 	/// - Parameters:
 	///   - contentType: Strapi Content Type
 	public init(contentType: String) {
-		super.init(method: "GET", contentType: contentType)
+		super.init(method: Method.GET, contentType: contentType)
 	}
 }
