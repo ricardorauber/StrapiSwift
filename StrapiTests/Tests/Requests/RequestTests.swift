@@ -20,6 +20,7 @@ class RequestTests: XCTestCase {
 		XCTAssertEqual(request.contentType, contentType)
 		XCTAssertNil(request.path)
 		XCTAssertEqual(request.parameters.count, 0)
+		XCTAssertEqual(request.inNotIn.count, 0)
 		XCTAssertEqual(request.sortingBy.count, 0)
 	}
 	
@@ -40,6 +41,7 @@ class RequestTests: XCTestCase {
 		XCTAssertEqual(request.path, path)
 		let name = request.parameters[parameterKey] as? String
 		XCTAssertEqual(name, parameterValue)
+		XCTAssertEqual(request.inNotIn.count, 0)
 		XCTAssertEqual(request.sortingBy.count, 0)
 	}
 	

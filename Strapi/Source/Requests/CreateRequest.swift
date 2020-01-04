@@ -1,7 +1,7 @@
 import Foundation
 
 /// Request for creating records - POST /{Content-Type}
-public class Create: Request {
+public class CreateRequest: Request {
 	
 	/// Instantiate a new object
 	/// - Parameters:

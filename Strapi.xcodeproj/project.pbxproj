@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4703DE2923C10B8B00B48BB7 /* Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4703DE2823C10B8B00B48BB7 /* Create.swift */; };
-		4703DE2C23C10C4700B48BB7 /* CreateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4703DE2B23C10C4700B48BB7 /* CreateTests.swift */; };
+		4703DE2923C10B8B00B48BB7 /* CreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4703DE2823C10B8B00B48BB7 /* CreateRequest.swift */; };
+		4703DE2C23C10C4700B48BB7 /* CreateRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4703DE2B23C10C4700B48BB7 /* CreateRequestTests.swift */; };
+		4703DE2E23C10CF000B48BB7 /* CountRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4703DE2D23C10CF000B48BB7 /* CountRequest.swift */; };
+		4703DE3023C10D6200B48BB7 /* CountRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4703DE2F23C10D6200B48BB7 /* CountRequestTests.swift */; };
 		4769A88823C0CEA200104F24 /* Strapi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4769A87E23C0CEA200104F24 /* Strapi.framework */; };
 		4769A88D23C0CEA200104F24 /* StrapiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4769A88C23C0CEA200104F24 /* StrapiTests.swift */; };
 		4769A88F23C0CEA200104F24 /* Strapi.h in Headers */ = {isa = PBXBuildFile; fileRef = 4769A88123C0CEA200104F24 /* Strapi.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -30,8 +32,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4703DE2823C10B8B00B48BB7 /* Create.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Create.swift; sourceTree = "<group>"; };
-		4703DE2B23C10C4700B48BB7 /* CreateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTests.swift; sourceTree = "<group>"; };
+		4703DE2823C10B8B00B48BB7 /* CreateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRequest.swift; sourceTree = "<group>"; };
+		4703DE2B23C10C4700B48BB7 /* CreateRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRequestTests.swift; sourceTree = "<group>"; };
+		4703DE2D23C10CF000B48BB7 /* CountRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountRequest.swift; sourceTree = "<group>"; };
+		4703DE2F23C10D6200B48BB7 /* CountRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountRequestTests.swift; sourceTree = "<group>"; };
 		4769A87E23C0CEA200104F24 /* Strapi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Strapi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4769A88123C0CEA200104F24 /* Strapi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Strapi.h; sourceTree = "<group>"; };
 		4769A88223C0CEA200104F24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -88,7 +92,8 @@
 			isa = PBXGroup;
 			children = (
 				4769A8EB23C0E68600104F24 /* Request.swift */,
-				4703DE2823C10B8B00B48BB7 /* Create.swift */,
+				4703DE2823C10B8B00B48BB7 /* CreateRequest.swift */,
+				4703DE2D23C10CF000B48BB7 /* CountRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -97,7 +102,8 @@
 			isa = PBXGroup;
 			children = (
 				4769A8ED23C0E6AD00104F24 /* RequestTests.swift */,
-				4703DE2B23C10C4700B48BB7 /* CreateTests.swift */,
+				4703DE2B23C10C4700B48BB7 /* CreateRequestTests.swift */,
+				4703DE2F23C10D6200B48BB7 /* CountRequestTests.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -249,9 +255,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4769A8C223C0D04A00104F24 /* Strapi.swift in Sources */,
+				4703DE2E23C10CF000B48BB7 /* CountRequest.swift in Sources */,
 				4769A8EC23C0E68600104F24 /* Request.swift in Sources */,
 				4769A8F023C0EA8500104F24 /* Method.swift in Sources */,
-				4703DE2923C10B8B00B48BB7 /* Create.swift in Sources */,
+				4703DE2923C10B8B00B48BB7 /* CreateRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,8 +268,9 @@
 			files = (
 				4769A88D23C0CEA200104F24 /* StrapiTests.swift in Sources */,
 				4769A8EE23C0E6AD00104F24 /* RequestTests.swift in Sources */,
+				4703DE3023C10D6200B48BB7 /* CountRequestTests.swift in Sources */,
 				4769A8F223C0FB5700104F24 /* MethodTests.swift in Sources */,
-				4703DE2C23C10C4700B48BB7 /* CreateTests.swift in Sources */,
+				4703DE2C23C10C4700B48BB7 /* CreateRequestTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
