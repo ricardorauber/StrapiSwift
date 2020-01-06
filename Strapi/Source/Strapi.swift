@@ -48,13 +48,15 @@ public class Strapi {
 	///   - username: User's username
 	///   - email: User's email
 	///   - password: User's password
+	///   - callback: Completion closure
+	@discardableResult
 	public func register(username: String, email: String, password: String, callback: @escaping StrapiCallback) -> URLSessionDataTask? {
 		let parameters: [String: Codable] = [
 			"username": username,
 			"email": email,
 			"password": password
 		]
-		let request = Request(method: "POST",
+		let request = Request(method: Method.POST,
 							  contentType: "auth",
 							  path: "/local/register",
 							  parameters: parameters)
@@ -65,12 +67,14 @@ public class Strapi {
 	/// - Parameters:
 	///   - identifier: Username or email
 	///   - password: User's password
+	///   - callback: Completion closure
+	@discardableResult
 	public func login(identifier: String, password: String, callback: @escaping StrapiCallback) -> URLSessionDataTask? {
 		let parameters: [String: Codable] = [
 			"identifier": identifier,
 			"password": password
 		]
-		let request = Request(method: "POST",
+		let request = Request(method: Method.POST,
 							  contentType: "auth",
 							  path: "/local",
 							  parameters: parameters)
@@ -80,11 +84,13 @@ public class Strapi {
 	/// Sends an email with a code to reset the password
 	/// - Parameters:
 	///   - email: Email to send the code
+	///   - callback: Completion closure
+	@discardableResult
 	public func forgotPassword(email: String, callback: @escaping StrapiCallback) -> URLSessionDataTask? {
 		let parameters: [String: Codable] = [
 			"email": email
 		]
-		let request = Request(method: "POST",
+		let request = Request(method: Method.POST,
 							  contentType: "auth",
 							  path: "/forgot-password",
 							  parameters: parameters)
@@ -96,13 +102,15 @@ public class Strapi {
 	///   - code: Code received by email
 	///   - password: New password
 	///   - passwordConfirmation: New password confirmation
+	///   - callback: Completion closure
+	@discardableResult
 	public func resetPassword(code: String, password: String, passwordConfirmation: String, callback: @escaping StrapiCallback) -> URLSessionDataTask? {
 		let parameters: [String: Codable] = [
 			"code": code,
 			"password": password,
 			"passwordConfirmation": passwordConfirmation
 		]
-		let request = Request(method: "POST",
+		let request = Request(method: Method.POST,
 							  contentType: "auth",
 							  path: "/reset-password",
 							  parameters: parameters)
@@ -112,11 +120,13 @@ public class Strapi {
 	/// Sends a new email confirmation to a given email
 	/// - Parameters:
 	///   - email: Email to send the confirmation
+	///   - callback: Completion closure
+	@discardableResult
 	public func sendEmailConfirmation(email: String, callback: @escaping StrapiCallback) -> URLSessionDataTask? {
 		let parameters: [String: Codable] = [
 			"email": email
 		]
-		let request = Request(method: "POST",
+		let request = Request(method: Method.POST,
 							  contentType: "auth",
 							  path: "/send-email-confirmation",
 							  parameters: parameters)
@@ -124,8 +134,11 @@ public class Strapi {
 	}
 	
 	/// Retrieves the logged in user
+	/// - Parameters:
+	///   - callback: Completion closure
+	@discardableResult
 	public func me(callback: @escaping StrapiCallback) -> URLSessionDataTask? {
-		let request = Request(method: "GET",
+		let request = Request(method: Method.GET,
 							  contentType: "users",
 							  path: "/me")
 		return exec(request: request, needAuthentication: true, callback: callback)
@@ -138,8 +151,9 @@ public class Strapi {
 	///   - request: Current request
 	///   - needAuthentication: Flag if need the authorization token or not
 	///   - autoExecute: Flag to auto execute the tsk
+	///   - callback: Completion closure
 	@discardableResult
-	public func exec(request: Request, needAuthentication: Bool, autoExecute: Bool = true, callback: @escaping StrapiCallback) -> URLSessionDataTask? {
+	public func exec(request: Request, needAuthentication: Bool, callback: @escaping StrapiCallback) -> URLSessionDataTask? {
 		if needAuthentication && token == nil {
 			return nil
 		}
@@ -150,12 +164,15 @@ public class Strapi {
 			let strapiResponse = self.processResponse(data: data, response: response, error: error)
 			callback(strapiResponse)
 		}
-		if autoExecute {
-			task.resume()
-		}
+		task.resume()
 		return task
 	}
 	
+	/// Process the HTTP response
+	/// - Parameters:
+	///   - data: Received data
+	///   - response: HTTP response
+	///   - error: Received error
 	private func processResponse(data: Data?, response: URLResponse?, error: Error?) -> Response {
 		guard let httpResponse = response as? HTTPURLResponse else { return Response(code: -1) }
 		var response = Response(code: httpResponse.statusCode)
@@ -184,13 +201,13 @@ public class Strapi {
 		if let path = request.path {
 			urlString += path
 		}
-		if request.method == "GET" {
+		if request.method == Method.GET {
 			urlString = makeQueryItems(urlString: urlString, request: request)
 		}
 		guard !request.method.isEmpty, let url = URL(string: urlString) else { return nil }
 		var urlRequest = URLRequest(url: url)
 		urlRequest.httpMethod = request.method
-		if request.method != "GET" && request.method != "DELETE" {
+		if request.method != Method.GET && request.method != Method.DELETE {
 			urlRequest.httpBody = try? JSONSerialization.data(withJSONObject: request.parameters, options: .prettyPrinted)
 		}
 		return urlRequest

@@ -50,7 +50,7 @@ class UpdateRequestTests: XCTestCase {
 			parameters: [parameterKey: parameterValue]
 		)
 		
-		let task = strapi.exec(request: request, needAuthentication: true, autoExecute: false) { _ in }
+		let task = strapi.exec(request: request, needAuthentication: true) { _ in }
 		XCTAssertNotNil(task)
 		let urlRequest = task?.originalRequest
 		XCTAssertNotNil(urlRequest)

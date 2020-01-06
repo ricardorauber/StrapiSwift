@@ -41,6 +41,7 @@ class StrapiTests: XCTestCase {
 			password: password,
 			callback: { _ in }
 		)
+		
 		XCTAssertNotNil(task)
 		let urlRequest = task?.originalRequest
 		XCTAssertNotNil(urlRequest)
@@ -61,6 +62,7 @@ class StrapiTests: XCTestCase {
 			password: password,
 			callback: { _ in }
 		)
+		
 		XCTAssertNotNil(task)
 		let urlRequest = task?.originalRequest
 		XCTAssertNotNil(urlRequest)
@@ -79,6 +81,7 @@ class StrapiTests: XCTestCase {
 			email: email,
 			callback: { _ in }
 		)
+		
 		XCTAssertNotNil(task)
 		let urlRequest = task?.originalRequest
 		XCTAssertNotNil(urlRequest)
@@ -101,6 +104,7 @@ class StrapiTests: XCTestCase {
 			passwordConfirmation: passwordConfirmation,
 			callback: { _ in }
 		)
+		
 		XCTAssertNotNil(task)
 		let urlRequest = task?.originalRequest
 		XCTAssertNotNil(urlRequest)
@@ -119,6 +123,7 @@ class StrapiTests: XCTestCase {
 			email: email,
 			callback: { _ in }
 		)
+		
 		XCTAssertNotNil(task)
 		let urlRequest = task?.originalRequest
 		XCTAssertNotNil(urlRequest)
@@ -136,6 +141,7 @@ class StrapiTests: XCTestCase {
 		let task = strapi.me(
 			callback: { _ in }
 		)
+		
 		XCTAssertNotNil(task)
 		let urlRequest = task?.originalRequest
 		XCTAssertNotNil(urlRequest)
@@ -148,7 +154,6 @@ class StrapiTests: XCTestCase {
 		let host = "localhost"
 		let port = 1337
 		let strapi = Strapi(scheme: "http", host: host, port: port)
-		
 		let task = strapi.me(
 			callback: { _ in }
 		)
@@ -162,7 +167,7 @@ class StrapiTests: XCTestCase {
 		let request = QueryRequest(
 			contentType: "restaurants"
 		)
-		let task = strapi.exec(request: request, needAuthentication: true, autoExecute: false) { _ in }
+		let task = strapi.exec(request: request, needAuthentication: true) { _ in }
 		XCTAssertNil(task)
 	}
 	
@@ -172,7 +177,7 @@ class StrapiTests: XCTestCase {
 			method: "",
 			contentType: ""
 		)
-		let task = strapi.exec(request: request, needAuthentication: false, autoExecute: false) { _ in }
+		let task = strapi.exec(request: request, needAuthentication: false) { _ in }
 		XCTAssertNil(task)
 	}
 	
@@ -182,7 +187,7 @@ class StrapiTests: XCTestCase {
 		let request = QueryRequest(
 			contentType: "restaurants"
 		)
-		let task = strapi.exec(request: request, needAuthentication: false, autoExecute: true) { response in
+		let task = strapi.exec(request: request, needAuthentication: false) { response in
 			XCTAssertEqual(response.code, -1)
 			XCTAssertNil(response.error)
 			XCTAssertNil(response.data)
@@ -199,7 +204,7 @@ class StrapiTests: XCTestCase {
 		let request = QueryRequest(
 			contentType: "restaurants"
 		)
-		let task = strapi.exec(request: request, needAuthentication: false, autoExecute: true) { response in
+		let task = strapi.exec(request: request, needAuthentication: false) { response in
 			XCTAssertEqual(response.code, 404)
 			XCTAssertNil(response.error)
 			XCTAssertNotNil(response.data)
