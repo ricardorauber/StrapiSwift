@@ -182,6 +182,12 @@ public class Strapi {
 				response.data = dict
 			} else if let list = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [[String: Any]] {
 				response.data = list
+			} else if let string = String(data: data, encoding: .utf8) {
+				if let int = Int(string) {
+					response.data = int
+				} else {
+					response.data = string
+				}
 			} else {
 				response.data = data
 			}
