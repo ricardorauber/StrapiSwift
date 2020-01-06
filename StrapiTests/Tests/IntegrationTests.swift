@@ -20,7 +20,7 @@ class IntegrationTests: XCTestCase {
 		var price = 3
 		let id = createRestaurant(name: name, price: price)
 		countRestaurants()
-		queryRestaurants()
+		queryRestaurants(price: price)
 		fetchRestaurant(id: id, name: name, price: price)
 		price = 5
 		updateRestaurant(id: id, price: price)
@@ -77,11 +77,11 @@ class IntegrationTests: XCTestCase {
 		XCTAssertEqual(waiterResult, .completed)
 	}
 	
-	func queryRestaurants() {
+	func queryRestaurants(price: Int) {
 		let testExpectation = self.expectation(description: "Tests")
 		
 		let request = QueryRequest(contentType: contentType)
-		request.filter(by: "price", greaterThanOrEqualTo: 3)
+		request.filter(by: "price", greaterThanOrEqualTo: price)
 		
 		let task = strapi.exec(request: request, needAuthentication: false) { response in
 			XCTAssertNil(response.error)
