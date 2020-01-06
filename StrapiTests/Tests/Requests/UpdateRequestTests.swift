@@ -52,11 +52,11 @@ class UpdateRequestTests: XCTestCase {
 		
 		let task = strapi.exec(request: request, needAuthentication: true, autoExecute: false) { _ in }
 		XCTAssertNotNil(task)
-		let urlRequest = task?.currentRequest
+		let urlRequest = task?.originalRequest
 		XCTAssertNotNil(urlRequest)
 		XCTAssertEqual(urlRequest!.httpMethod, "PUT")
 		XCTAssertEqual(urlRequest!.url!.absoluteString, "http://\(host):\(port)/\(contentType)/\(id)")
 		XCTAssertEqual(urlRequest!.allHTTPHeaderFields, ["Content-Type": "application/json; charset=utf-8", "Authorization": "Bearer abcde"])
-		XCTAssertEqual(urlRequest!.jsonString!, "[\"\(parameterKey)\": \(parameterValue)]")
+		XCTAssertEqual(urlRequest!.jsonString, "[\"\(parameterKey)\": \(parameterValue)]")
 	}
 }

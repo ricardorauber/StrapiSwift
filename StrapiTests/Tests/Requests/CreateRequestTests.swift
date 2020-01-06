@@ -46,11 +46,11 @@ class CreateRequestTests: XCTestCase {
 		
 		let task = strapi.exec(request: request, needAuthentication: false, autoExecute: false) { _ in }
 		XCTAssertNotNil(task)
-		let urlRequest = task?.currentRequest
+		let urlRequest = task?.originalRequest
 		XCTAssertNotNil(urlRequest)
 		XCTAssertEqual(urlRequest!.httpMethod, "POST")
 		XCTAssertEqual(urlRequest!.url!.absoluteString, "http://\(host):\(port)/\(contentType)")
 		XCTAssertEqual(urlRequest!.allHTTPHeaderFields, ["Content-Type": "application/json; charset=utf-8"])
-		XCTAssertEqual(urlRequest!.jsonString!, "[\"\(parameterKey)\": \(parameterValue)]")
+		XCTAssertEqual(urlRequest!.jsonString, "[\"\(parameterKey)\": \(parameterValue)]")
 	}
 }

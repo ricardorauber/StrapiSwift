@@ -25,6 +25,136 @@ class StrapiTests: XCTestCase {
 		XCTAssertNil(strapi.token)
 	}
 	
+	// MARK: - Users
+	
+	func testRegister() {
+		let host = "localhost"
+		let port = 1337
+		let username = "username"
+		let email = "email"
+		let password = "password"
+		let strapi = Strapi(scheme: "http", host: host, port: port)
+		
+		let task = strapi.register(
+			username: username,
+			email: email,
+			password: password,
+			callback: { _ in }
+		)
+		XCTAssertNotNil(task)
+		let urlRequest = task?.originalRequest
+		XCTAssertNotNil(urlRequest)
+		XCTAssertEqual(urlRequest!.httpMethod, "POST")
+		XCTAssertEqual(urlRequest!.url!.absoluteString, "http://\(host):\(port)/auth/local/register")
+		XCTAssertNotNil(urlRequest!.jsonString)
+	}
+	
+	func testLogin() {
+		let host = "localhost"
+		let port = 1337
+		let identifier = "identifier"
+		let password = "password"
+		let strapi = Strapi(scheme: "http", host: host, port: port)
+		
+		let task = strapi.login(
+			identifier: identifier,
+			password: password,
+			callback: { _ in }
+		)
+		XCTAssertNotNil(task)
+		let urlRequest = task?.originalRequest
+		XCTAssertNotNil(urlRequest)
+		XCTAssertEqual(urlRequest!.httpMethod, "POST")
+		XCTAssertEqual(urlRequest!.url!.absoluteString, "http://\(host):\(port)/auth/local")
+		XCTAssertNotNil(urlRequest!.jsonString)
+	}
+	
+	func testForgotPassword() {
+		let host = "localhost"
+		let port = 1337
+		let email = "email"
+		let strapi = Strapi(scheme: "http", host: host, port: port)
+		
+		let task = strapi.forgotPassword(
+			email: email,
+			callback: { _ in }
+		)
+		XCTAssertNotNil(task)
+		let urlRequest = task?.originalRequest
+		XCTAssertNotNil(urlRequest)
+		XCTAssertEqual(urlRequest!.httpMethod, "POST")
+		XCTAssertEqual(urlRequest!.url!.absoluteString, "http://\(host):\(port)/auth/forgot-password")
+		XCTAssertNotNil(urlRequest!.jsonString)
+	}
+	
+	func testResetPassword() {
+		let host = "localhost"
+		let port = 1337
+		let code = "code"
+		let password = "password"
+		let passwordConfirmation = "passwordConfirmation"
+		let strapi = Strapi(scheme: "http", host: host, port: port)
+		
+		let task = strapi.resetPassword(
+			code: code,
+			password: password,
+			passwordConfirmation: passwordConfirmation,
+			callback: { _ in }
+		)
+		XCTAssertNotNil(task)
+		let urlRequest = task?.originalRequest
+		XCTAssertNotNil(urlRequest)
+		XCTAssertEqual(urlRequest!.httpMethod, "POST")
+		XCTAssertEqual(urlRequest!.url!.absoluteString, "http://\(host):\(port)/auth/reset-password")
+		XCTAssertNotNil(urlRequest!.jsonString)
+	}
+	
+	func testSendEmailConfirmation() {
+		let host = "localhost"
+		let port = 1337
+		let email = "email"
+		let strapi = Strapi(scheme: "http", host: host, port: port)
+		
+		let task = strapi.sendEmailConfirmation(
+			email: email,
+			callback: { _ in }
+		)
+		XCTAssertNotNil(task)
+		let urlRequest = task?.originalRequest
+		XCTAssertNotNil(urlRequest)
+		XCTAssertEqual(urlRequest!.httpMethod, "POST")
+		XCTAssertEqual(urlRequest!.url!.absoluteString, "http://\(host):\(port)/auth/send-email-confirmation")
+		XCTAssertNotNil(urlRequest!.jsonString)
+	}
+	
+	func testMe() {
+		let host = "localhost"
+		let port = 1337
+		let strapi = Strapi(scheme: "http", host: host, port: port)
+		strapi.token = "abc"
+		
+		let task = strapi.me(
+			callback: { _ in }
+		)
+		XCTAssertNotNil(task)
+		let urlRequest = task?.originalRequest
+		XCTAssertNotNil(urlRequest)
+		XCTAssertEqual(urlRequest!.httpMethod, "GET")
+		XCTAssertEqual(urlRequest!.url!.absoluteString, "http://\(host):\(port)/users/me")
+		XCTAssertNil(urlRequest!.jsonString)
+	}
+	
+	func testMeWithoutToken() {
+		let host = "localhost"
+		let port = 1337
+		let strapi = Strapi(scheme: "http", host: host, port: port)
+		
+		let task = strapi.me(
+			callback: { _ in }
+		)
+		XCTAssertNil(task)
+	}
+	
 	// MARK: - Edge cases
 	
 	func testRequestWithoutTokenNeedingAuthorization() {

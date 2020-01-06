@@ -38,7 +38,7 @@ class QueryRequestTests: XCTestCase {
 		
 		let task = strapi.exec(request: request, needAuthentication: false, autoExecute: false) { _ in }
 		XCTAssertNotNil(task)
-		let urlRequest = task?.currentRequest
+		let urlRequest = task?.originalRequest
 		XCTAssertNotNil(urlRequest)
 		XCTAssertEqual(urlRequest!.httpMethod, "GET")
 		XCTAssertEqual(urlRequest!.url!.absoluteString, "http://\(host):\(port)/\(contentType)")
@@ -61,7 +61,7 @@ class QueryRequestTests: XCTestCase {
 		
 		let task = strapi.exec(request: request, needAuthentication: false, autoExecute: false) { _ in }
 		XCTAssertNotNil(task)
-		let urlRequest = task?.currentRequest
+		let urlRequest = task?.originalRequest
 		XCTAssertNotNil(urlRequest)
 		XCTAssertEqual(urlRequest!.httpMethod, "GET")
 		XCTAssertEqual(urlRequest!.url!.absoluteString, "http://\(host):\(port)/\(contentType)?\(filterKey)_contains=\(filterValue)")
@@ -84,7 +84,7 @@ class QueryRequestTests: XCTestCase {
 		
 		let task = strapi.exec(request: request, needAuthentication: false, autoExecute: false) { _ in }
 		XCTAssertNotNil(task)
-		let urlRequest = task?.currentRequest
+		let urlRequest = task?.originalRequest
 		XCTAssertNotNil(urlRequest)
 		XCTAssertEqual(urlRequest!.httpMethod, "GET")
 		XCTAssertEqual(urlRequest!.url!.absoluteString, "http://\(host):\(port)/\(contentType)?\(filterKey)_in=\(filterValue)")
@@ -107,7 +107,7 @@ class QueryRequestTests: XCTestCase {
 		
 		let task = strapi.exec(request: request, needAuthentication: false, autoExecute: false) { _ in }
 		XCTAssertNotNil(task)
-		let urlRequest = task?.currentRequest
+		let urlRequest = task?.originalRequest
 		XCTAssertNotNil(urlRequest)
 		XCTAssertEqual(urlRequest!.httpMethod, "GET")
 		XCTAssertEqual(urlRequest!.url!.absoluteString, "http://\(host):\(port)/\(contentType)?_sort=\(sortingKey):\(sortingValue)")

@@ -38,7 +38,7 @@ class CountRequestTests: XCTestCase {
 		
 		let task = strapi.exec(request: request, needAuthentication: false, autoExecute: false) { _ in }
 		XCTAssertNotNil(task)
-		let urlRequest = task?.currentRequest
+		let urlRequest = task?.originalRequest
 		XCTAssertNotNil(urlRequest)
 		XCTAssertEqual(urlRequest!.httpMethod, "GET")
 		XCTAssertEqual(urlRequest!.url!.absoluteString, "http://\(host):\(port)/\(contentType)/count")
