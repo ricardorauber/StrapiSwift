@@ -78,7 +78,12 @@ public class Strapi {
 							  contentType: "auth",
 							  path: "/local",
 							  parameters: parameters)
-		return exec(request: request, needAuthentication: false, callback: callback)
+		return exec(request: request, needAuthentication: false) { response in
+			if let object = response.data as? [String: Any], let token = object["jwt"] as? String {
+				self.token = token
+			}
+			callback(response)
+		}
 	}
 	
 	/// Sends an email with a code to reset the password
