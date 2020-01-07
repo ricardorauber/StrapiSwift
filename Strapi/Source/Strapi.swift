@@ -1,4 +1,4 @@
-import Foundation
+import UIKit
 
 /// Main class to send requests to the Strapi Backend
 public class Strapi {
@@ -147,6 +147,113 @@ public class Strapi {
 							  contentType: "users",
 							  path: "/me")
 		return exec(request: request, needAuthentication: true, callback: callback)
+	}
+	
+	// MARK: - Files
+	
+	/// Uploads a file to the server
+	/// - Parameters:
+	///   - contentType: Content type
+	///   - id: Id of the record
+	///   - field: Field of the content type
+	///   - path: Path for AWS
+	///   - filename: Name of the file
+	///   - mimeType: Mime type of the file
+	///   - fileData: File content as Data
+	///   - needAuthentication: Flag if need the authorization token or not
+	///   - callback: Completion closure
+	@discardableResult
+	public func upload(contentType: String,
+					   id: Int,
+					   field: String,
+					   path: String? = nil,
+					   filename: String,
+					   mimeType: String,
+					   fileData: Data,
+					   needAuthentication: Bool,
+					   callback: @escaping StrapiCallback) -> URLSessionDataTask? {
+		
+		if needAuthentication && token == nil {
+			return nil
+		}
+		
+		let request = Request(
+			method: Method.POST,
+			contentType: "upload"
+		)
+		
+		guard var urlRequest = urlRequest(from: request) else { return nil }
+		urlRequest = addHeaders(urlRequest: urlRequest, needAuthentication: needAuthentication)
+		
+		let boundary = UUID().uuidString
+		urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+		var formData = Data()
+		
+		var parameters: [String: Codable] = [
+			"ref": contentType,
+			"refId": id,
+			"field": field
+		]
+		if let path = path {
+			parameters["path"] = path
+		}
+		
+		for (key, value) in parameters {
+			formData.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+			formData.append("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n".data(using: .utf8)!)
+			formData.append(String(describing: value).data(using: .utf8)!)
+		}
+		
+		formData.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+		formData.append("Content-Disposition: form-data; name=\"files\"; filename=\"\(filename)\"\r\n".data(using: .utf8)!)
+		formData.append("Content-Type: \(mimeType)\r\n\r\n".data(using: .utf8)!)
+		formData.append(fileData)
+		
+		formData.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
+		
+		let task = session.uploadTask(with: urlRequest, from: formData) { [weak self] data, response, error in
+			guard let `self` = self else { return }
+			let strapiResponse = self.processResponse(data: data, response: response, error: error)
+			callback(strapiResponse)
+		}
+		task.resume()
+		return task
+	}
+	
+	/// Uploads an image to the server
+	/// - Parameters:
+	///   - contentType: Content type
+	///   - id: Id of the record
+	///   - field: Field of the content type
+	///   - path: Path for AWS
+	///   - image: UIImage to be uploaded
+	///   - quality: Quality of the JPG compression
+	///   - needAuthentication: Flag if need the authorization token or not
+	///   - callback: Completion closure
+	@discardableResult
+	public func upload(contentType: String,
+					   id: Int,
+					   field: String,
+					   path: String? = nil,
+					   image: UIImage,
+					   compressionQuality quality: CGFloat,
+					   needAuthentication: Bool,
+					   callback: @escaping StrapiCallback) -> URLSessionDataTask? {
+		
+		guard let fileData = image.jpegData(compressionQuality: quality) else {
+			return nil
+		}
+		return upload(
+			contentType: contentType,
+			id: id,
+			field: field,
+			path: path,
+			filename: "image.jpg",
+			mimeType: "image/jpg",
+			fileData: fileData,
+			needAuthentication: needAuthentication,
+			callback: callback
+		)
 	}
 	
 	// MARK: - Requests

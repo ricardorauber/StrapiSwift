@@ -10,7 +10,7 @@ class UpdateRequestTests: XCTestCase {
 	// MARK: - Initialization
 	
 	func testInit() {
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let id = 10
 		let parameterKey = "name"
 		let parameterValue = "New Name"
@@ -22,7 +22,7 @@ class UpdateRequestTests: XCTestCase {
 		)
 		
 		XCTAssertEqual(request.method, "PUT")
-		XCTAssertEqual(request.contentType, contentType)
+		XCTAssertEqual(request.contentType, contentType + "s")
 		XCTAssertEqual(request.path, "/\(id)")
 		XCTAssertEqual(request.parameters.count, 1)
 		let name = request.parameters[parameterKey] as? String
@@ -37,7 +37,7 @@ class UpdateRequestTests: XCTestCase {
 		let host = "localhost"
 		let port = 1337
 		let token = "abcde"
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let id = 10
 		let parameterKey = "name"
 		let parameterValue = "New Name"
@@ -55,7 +55,7 @@ class UpdateRequestTests: XCTestCase {
 		let urlRequest = task?.originalRequest
 		XCTAssertNotNil(urlRequest)
 		XCTAssertEqual(urlRequest!.httpMethod, "PUT")
-		XCTAssertEqual(urlRequest!.url!.absoluteString, "http://\(host):\(port)/\(contentType)/\(id)")
+		XCTAssertEqual(urlRequest!.url!.absoluteString, "http://\(host):\(port)/\(contentType)s/\(id)")
 		XCTAssertEqual(urlRequest!.allHTTPHeaderFields, ["Content-Type": "application/json; charset=utf-8", "Authorization": "Bearer abcde"])
 		XCTAssertEqual(urlRequest!.jsonString, "[\"\(parameterKey)\": \(parameterValue)]")
 	}

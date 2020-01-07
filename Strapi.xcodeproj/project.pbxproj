@@ -23,6 +23,7 @@
 		4703DE4523C1257F00B48BB7 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4703DE4423C1257F00B48BB7 /* Response.swift */; };
 		4703DE4723C1285F00B48BB7 /* ResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4703DE4623C1285F00B48BB7 /* ResponseTests.swift */; };
 		4703DE4923C3A58000B48BB7 /* IntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4703DE4823C3A58000B48BB7 /* IntegrationTests.swift */; };
+		4703DE4D23C4E68900B48BB7 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4703DE4C23C4E68900B48BB7 /* UIImage+Extension.swift */; };
 		4769A88823C0CEA200104F24 /* Strapi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4769A87E23C0CEA200104F24 /* Strapi.framework */; };
 		4769A88D23C0CEA200104F24 /* StrapiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4769A88C23C0CEA200104F24 /* StrapiTests.swift */; };
 		4769A88F23C0CEA200104F24 /* Strapi.h in Headers */ = {isa = PBXBuildFile; fileRef = 4769A88123C0CEA200104F24 /* Strapi.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -60,6 +61,7 @@
 		4703DE4423C1257F00B48BB7 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		4703DE4623C1285F00B48BB7 /* ResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseTests.swift; sourceTree = "<group>"; };
 		4703DE4823C3A58000B48BB7 /* IntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationTests.swift; sourceTree = "<group>"; };
+		4703DE4C23C4E68900B48BB7 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		4769A87E23C0CEA200104F24 /* Strapi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Strapi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4769A88123C0CEA200104F24 /* Strapi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Strapi.h; sourceTree = "<group>"; };
 		4769A88223C0CEA200104F24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 			children = (
 				4769A88E23C0CEA200104F24 /* Info.plist */,
 				4703DE4123C114A400B48BB7 /* URLRequest+Extension.swift */,
+				4703DE4C23C4E68900B48BB7 /* UIImage+Extension.swift */,
 				4703DE2223C10A9B00B48BB7 /* Tests */,
 			);
 			path = StrapiTests;
@@ -307,6 +310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4703DE4D23C4E68900B48BB7 /* UIImage+Extension.swift in Sources */,
 				4769A88D23C0CEA200104F24 /* StrapiTests.swift in Sources */,
 				4769A8EE23C0E6AD00104F24 /* RequestTests.swift in Sources */,
 				4703DE4023C1116E00B48BB7 /* DestroyRequestTests.swift in Sources */,

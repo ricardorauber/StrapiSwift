@@ -9,6 +9,6 @@ public class UpdateRequest: Request {
 	///   - id: ID of the record
 	///   - parameters: Body of the request
 	public init(contentType: String, id: Int, parameters: [String: Codable]) {
-		super.init(method: Method.PUT, contentType: contentType, path: "/\(id)", parameters: parameters)
+		super.init(method: Method.PUT, contentType: contentType + "s", path: "/\(id)", parameters: parameters)
 	}
 }

@@ -5,7 +5,7 @@ class IntegrationTests: XCTestCase {
 	
 	// MARK: - Settings
 	
-	let contentType = "restaurants"
+	let contentType = "restaurant"
 	let strapi = Strapi(scheme: "https", host: "strapi-ios.herokuapp.com")
 	let timeout: TimeInterval = 2
 	
@@ -34,6 +34,7 @@ class IntegrationTests: XCTestCase {
 		fetchRestaurant(id: restaurantId, name: restaurantName, price: restaurantPrice)
 		restaurantPrice = 5
 		updateRestaurant(id: restaurantId, price: restaurantPrice)
+		uploadPhoto(id: restaurantId)
 		fetchRestaurant(id: restaurantId, name: restaurantName, price: restaurantPrice)
 		destroyRestaurant(id: restaurantId)
 		
@@ -110,7 +111,7 @@ class IntegrationTests: XCTestCase {
 		let testExpectation = self.expectation(description: "Tests")
 		
 		let request = DestroyRequest(
-			contentType: "users",
+			contentType: "user",
 			id: id
 		)
 		
@@ -254,6 +255,37 @@ class IntegrationTests: XCTestCase {
 			}
 			XCTAssertEqual(currentPrice, price)
 			testExpectation.fulfill()
+		}
+		
+		XCTAssertNotNil(task)
+		let waiterResult = XCTWaiter.wait(for: [testExpectation], timeout: timeout)
+		XCTAssertEqual(waiterResult, .completed)
+	}
+	
+	func uploadPhoto(id: Int) {
+		let testExpectation = self.expectation(description: "Tests")
+		let field = "photo"
+		let image = UIImage(color: .blue, size: CGSize(width: 100, height: 100))
+		let quality: CGFloat = 0.85
+		
+		let task = strapi.upload(
+			contentType: contentType,
+			id: id,
+			field: field,
+			image: image,
+			compressionQuality: quality,
+			needAuthentication: true) { response in
+				XCTAssertNil(response.error)
+				XCTAssertNotNil(response.data)
+				guard let list = response.data as? [[String: Any]],
+					let object = list.first
+					else {
+						XCTFail("Could not serialize the response")
+						return
+				}
+				let id = object["id"] as? Int
+				XCTAssertNotNil(id)
+				testExpectation.fulfill()
 		}
 		
 		XCTAssertNotNil(task)

@@ -10,7 +10,7 @@ class CreateRequestTests: XCTestCase {
 	// MARK: - Initialization
 	
 	func testInit() {
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let parameterKey = "name"
 		let parameterValue = "New Name"
 		
@@ -20,7 +20,7 @@ class CreateRequestTests: XCTestCase {
 		)
 		
 		XCTAssertEqual(request.method, "POST")
-		XCTAssertEqual(request.contentType, contentType)
+		XCTAssertEqual(request.contentType, contentType + "s")
 		XCTAssertNil(request.path)
 		XCTAssertEqual(request.parameters.count, 1)
 		let name = request.parameters[parameterKey] as? String
@@ -34,7 +34,7 @@ class CreateRequestTests: XCTestCase {
 	func testUrlRequest() {
 		let host = "localhost"
 		let port = 1337
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let parameterKey = "name"
 		let parameterValue = "New Name"
 		let strapi = Strapi(scheme: "http", host: host, port: port)
@@ -49,7 +49,7 @@ class CreateRequestTests: XCTestCase {
 		let urlRequest = task?.originalRequest
 		XCTAssertNotNil(urlRequest)
 		XCTAssertEqual(urlRequest!.httpMethod, "POST")
-		XCTAssertEqual(urlRequest!.url!.absoluteString, "http://\(host):\(port)/\(contentType)")
+		XCTAssertEqual(urlRequest!.url!.absoluteString, "http://\(host):\(port)/\(contentType)s")
 		XCTAssertEqual(urlRequest!.allHTTPHeaderFields, ["Content-Type": "application/json; charset=utf-8"])
 		XCTAssertEqual(urlRequest!.jsonString, "[\"\(parameterKey)\": \(parameterValue)]")
 	}

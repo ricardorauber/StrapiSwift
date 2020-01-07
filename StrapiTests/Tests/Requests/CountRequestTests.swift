@@ -10,14 +10,14 @@ class CountRequestTests: XCTestCase {
 	// MARK: - Initialization
 	
 	func testInit() {
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		
 		let request = CountRequest(
 			contentType: contentType
 		)
 		
 		XCTAssertEqual(request.method, "GET")
-		XCTAssertEqual(request.contentType, contentType)
+		XCTAssertEqual(request.contentType, contentType + "s")
 		XCTAssertEqual(request.path, "/count")
 		XCTAssertEqual(request.parameters.count, 0)
 		XCTAssertEqual(request.inNotIn.count, 0)
@@ -29,7 +29,7 @@ class CountRequestTests: XCTestCase {
 	func testUrlRequest() {
 		let host = "localhost"
 		let port = 1337
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let strapi = Strapi(scheme: "http", host: host, port: port)
 		
 		let request = CountRequest(
@@ -41,7 +41,7 @@ class CountRequestTests: XCTestCase {
 		let urlRequest = task?.originalRequest
 		XCTAssertNotNil(urlRequest)
 		XCTAssertEqual(urlRequest!.httpMethod, "GET")
-		XCTAssertEqual(urlRequest!.url!.absoluteString, "http://\(host):\(port)/\(contentType)/count")
+		XCTAssertEqual(urlRequest!.url!.absoluteString, "http://\(host):\(port)/\(contentType)s/count")
 		XCTAssertEqual(urlRequest!.allHTTPHeaderFields, ["Content-Type": "application/json; charset=utf-8"])
 		XCTAssertNil(urlRequest!.jsonString)
 	}

@@ -8,6 +8,6 @@ public class FetchRequest: Request {
 	///   - contentType: Strapi Content Type
 	///   - id: ID of the record
 	public init(contentType: String, id: Int) {
-		super.init(method: Method.GET, contentType: contentType, path: "/\(id)")
+		super.init(method: Method.GET, contentType: contentType + "s", path: "/\(id)")
 	}
 }

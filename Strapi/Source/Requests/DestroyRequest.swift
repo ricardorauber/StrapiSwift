@@ -8,6 +8,6 @@ public class DestroyRequest: Request {
 	///   - contentType: Strapi Content Type
 	///   - id: ID of the record
 	public init(contentType: String, id: Int) {
-		super.init(method: Method.DELETE, contentType: contentType, path: "/\(id)")
+		super.init(method: Method.DELETE, contentType: contentType + "s", path: "/\(id)")
 	}
 }

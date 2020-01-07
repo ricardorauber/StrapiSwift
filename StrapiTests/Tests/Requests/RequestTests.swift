@@ -11,7 +11,7 @@ class RequestTests: XCTestCase {
 	
 	func testInit() {
 		let method = "GET"
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let request = Request(
 			method: method,
 			contentType: contentType
@@ -27,7 +27,7 @@ class RequestTests: XCTestCase {
 	
 	func testFullInit() {
 		let method = "GET"
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let path = "/id"
 		let parameterKey = "name"
 		let parameterValue = "New Name"
@@ -52,7 +52,7 @@ class RequestTests: XCTestCase {
 	
 	func testSetAndClearParameters() {
 		let method = "GET"
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let parameterKey = "name"
 		let parameterValue = "New Name"
 		
@@ -73,7 +73,7 @@ class RequestTests: XCTestCase {
 	
 	func testSetAndClearFilters() {
 		let method = "GET"
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let parameterKey = "name"
 		let parameterValue = "New Name"
 		
@@ -92,7 +92,7 @@ class RequestTests: XCTestCase {
 	
 	func testShouldNotSetFilters() {
 		let method = "POST"
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let parameterKey = "name"
 		let parameterValue = "New Name"
 		
@@ -109,7 +109,7 @@ class RequestTests: XCTestCase {
 	
 	func testFilterEqualTo() {
 		let method = "GET"
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let parameterKey = "name"
 		let parameterValue = "New Name"
 		let filterSuffix = "_eq"
@@ -128,7 +128,7 @@ class RequestTests: XCTestCase {
 	
 	func testFilterNotEqualTo() {
 		let method = "GET"
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let parameterKey = "name"
 		let parameterValue = "New Name"
 		let filterSuffix = "_ne"
@@ -147,7 +147,7 @@ class RequestTests: XCTestCase {
 	
 	func testFilterLowerThan() {
 		let method = "GET"
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let parameterKey = "name"
 		let parameterValue = "New Name"
 		let filterSuffix = "_lt"
@@ -166,7 +166,7 @@ class RequestTests: XCTestCase {
 	
 	func testFilterGreaterThan() {
 		let method = "GET"
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let parameterKey = "name"
 		let parameterValue = "New Name"
 		let filterSuffix = "_gt"
@@ -185,7 +185,7 @@ class RequestTests: XCTestCase {
 	
 	func testFilterLowerThanOrEqualTo() {
 		let method = "GET"
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let parameterKey = "name"
 		let parameterValue = "New Name"
 		let filterSuffix = "_lte"
@@ -204,7 +204,7 @@ class RequestTests: XCTestCase {
 	
 	func testFilterGreaterThanOrEqualTo() {
 		let method = "GET"
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let parameterKey = "name"
 		let parameterValue = "New Name"
 		let filterSuffix = "_gte"
@@ -223,7 +223,7 @@ class RequestTests: XCTestCase {
 	
 	func testFilterContains() {
 		let method = "GET"
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let parameterKey = "name"
 		let parameterValue = "New Name"
 		let filterSuffix = "_contains"
@@ -242,7 +242,7 @@ class RequestTests: XCTestCase {
 	
 	func testFilterDoesntContain() {
 		let method = "GET"
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let parameterKey = "name"
 		let parameterValue = "New Name"
 		let filterSuffix = "_ncontains"
@@ -261,7 +261,7 @@ class RequestTests: XCTestCase {
 	
 	func testFilterContainsCaseSensitive() {
 		let method = "GET"
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let parameterKey = "name"
 		let parameterValue = "New Name"
 		let filterSuffix = "_containss"
@@ -280,7 +280,7 @@ class RequestTests: XCTestCase {
 	
 	func testFilterDoesntContainCaseSensitive() {
 		let method = "GET"
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let parameterKey = "name"
 		let parameterValue = "New Name"
 		let filterSuffix = "_ncontainss"
@@ -299,7 +299,7 @@ class RequestTests: XCTestCase {
 	
 	func testFilterIsNull() {
 		let method = "GET"
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let parameterKey = "name"
 		let parameterValue = true
 		let filterSuffix = "_null"
@@ -318,7 +318,7 @@ class RequestTests: XCTestCase {
 	
 	func testFilterIsNotNull() {
 		let method = "GET"
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let parameterKey = "name"
 		let parameterValue = false
 		let filterSuffix = "_null"
@@ -339,7 +339,7 @@ class RequestTests: XCTestCase {
 	
 	func testFilterIn() {
 		let method = "GET"
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let parameterKey = "name"
 		let parameterValue = "New Name"
 		let filterSuffix = "_in"
@@ -360,7 +360,7 @@ class RequestTests: XCTestCase {
 	
 	func testFilterNotIn() {
 		let method = "GET"
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let parameterKey = "name"
 		let parameterValue = "New Name"
 		let filterSuffix = "_nin"
@@ -381,7 +381,7 @@ class RequestTests: XCTestCase {
 	
 	func testFilterMultipleNotIns() {
 		let method = "GET"
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let parameterKey1 = "price"
 		let parameterValue1 = 4
 		let parameterKey2 = "price"
@@ -412,7 +412,7 @@ class RequestTests: XCTestCase {
 	
 	func testShouldNotAddInNotInFilters() {
 		let method = "POST"
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let parameterKey = "name"
 		let parameterValue = "New Name"
 		
@@ -431,7 +431,7 @@ class RequestTests: XCTestCase {
 	
 	func testLimitBy() {
 		let method = "GET"
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let parameterValue = 10
 		let filterSuffix = "_limit"
 		
@@ -449,7 +449,7 @@ class RequestTests: XCTestCase {
 	
 	func testStartAt() {
 		let method = "GET"
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let parameterValue = 0
 		let filterSuffix = "_start"
 		
@@ -469,7 +469,7 @@ class RequestTests: XCTestCase {
 	
 	func testSortingByAndClearSorting() {
 		let method = "GET"
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let sortingByKey = "name"
 		let sortingByMode = "ASC"
 		
@@ -491,7 +491,7 @@ class RequestTests: XCTestCase {
 	
 	func testShouldNotSortBy() {
 		let method = "POST"
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let sortingByKey = "name"
 		
 		let request = Request(
@@ -507,7 +507,7 @@ class RequestTests: XCTestCase {
 	
 	func testSortByMultipleItems() {
 		let method = "GET"
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let sortingByKey1 = "name"
 		let sortingByMode1 = "ASC"
 		let sortingByKey2 = "price"

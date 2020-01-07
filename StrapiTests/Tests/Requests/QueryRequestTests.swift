@@ -10,14 +10,14 @@ class QueryRequestTests: XCTestCase {
 	// MARK: - Initialization
 	
 	func testInit() {
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		
 		let request = QueryRequest(
 			contentType: contentType
 		)
 		
 		XCTAssertEqual(request.method, "GET")
-		XCTAssertEqual(request.contentType, contentType)
+		XCTAssertEqual(request.contentType, contentType + "s")
 		XCTAssertNil(request.path)
 		XCTAssertEqual(request.parameters.count, 0)
 		XCTAssertEqual(request.inNotIn.count, 0)
@@ -29,7 +29,7 @@ class QueryRequestTests: XCTestCase {
 	func testUrlRequest() {
 		let host = "localhost"
 		let port = 1337
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let strapi = Strapi(scheme: "http", host: host, port: port)
 		
 		let request = QueryRequest(
@@ -41,7 +41,7 @@ class QueryRequestTests: XCTestCase {
 		let urlRequest = task?.originalRequest
 		XCTAssertNotNil(urlRequest)
 		XCTAssertEqual(urlRequest!.httpMethod, "GET")
-		XCTAssertEqual(urlRequest!.url!.absoluteString, "http://\(host):\(port)/\(contentType)")
+		XCTAssertEqual(urlRequest!.url!.absoluteString, "http://\(host):\(port)/\(contentType)s")
 		XCTAssertEqual(urlRequest!.allHTTPHeaderFields, ["Content-Type": "application/json; charset=utf-8"])
 		XCTAssertNil(urlRequest!.jsonString)
 	}
@@ -49,7 +49,7 @@ class QueryRequestTests: XCTestCase {
 	func testUrlRequestWithFilter() {
 		let host = "localhost"
 		let port = 1337
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let filterKey = "name"
 		let filterValue = "pizza"
 		let strapi = Strapi(scheme: "http", host: host, port: port)
@@ -64,7 +64,7 @@ class QueryRequestTests: XCTestCase {
 		let urlRequest = task?.originalRequest
 		XCTAssertNotNil(urlRequest)
 		XCTAssertEqual(urlRequest!.httpMethod, "GET")
-		XCTAssertEqual(urlRequest!.url!.absoluteString, "http://\(host):\(port)/\(contentType)?\(filterKey)_contains=\(filterValue)")
+		XCTAssertEqual(urlRequest!.url!.absoluteString, "http://\(host):\(port)/\(contentType)s?\(filterKey)_contains=\(filterValue)")
 		XCTAssertEqual(urlRequest!.allHTTPHeaderFields, ["Content-Type": "application/json; charset=utf-8"])
 		XCTAssertNil(urlRequest!.jsonString)
 	}
@@ -72,7 +72,7 @@ class QueryRequestTests: XCTestCase {
 	func testUrlRequestWithInFilter() {
 		let host = "localhost"
 		let port = 1337
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let filterKey = "name"
 		let filterValue = "pizza"
 		let strapi = Strapi(scheme: "http", host: host, port: port)
@@ -87,7 +87,7 @@ class QueryRequestTests: XCTestCase {
 		let urlRequest = task?.originalRequest
 		XCTAssertNotNil(urlRequest)
 		XCTAssertEqual(urlRequest!.httpMethod, "GET")
-		XCTAssertEqual(urlRequest!.url!.absoluteString, "http://\(host):\(port)/\(contentType)?\(filterKey)_in=\(filterValue)")
+		XCTAssertEqual(urlRequest!.url!.absoluteString, "http://\(host):\(port)/\(contentType)s?\(filterKey)_in=\(filterValue)")
 		XCTAssertEqual(urlRequest!.allHTTPHeaderFields, ["Content-Type": "application/json; charset=utf-8"])
 		XCTAssertNil(urlRequest!.jsonString)
 	}
@@ -95,7 +95,7 @@ class QueryRequestTests: XCTestCase {
 	func testUrlRequestWithSorting() {
 		let host = "localhost"
 		let port = 1337
-		let contentType = "restaurants"
+		let contentType = "restaurant"
 		let sortingKey = "name"
 		let sortingValue = "ASC"
 		let strapi = Strapi(scheme: "http", host: host, port: port)
@@ -110,7 +110,7 @@ class QueryRequestTests: XCTestCase {
 		let urlRequest = task?.originalRequest
 		XCTAssertNotNil(urlRequest)
 		XCTAssertEqual(urlRequest!.httpMethod, "GET")
-		XCTAssertEqual(urlRequest!.url!.absoluteString, "http://\(host):\(port)/\(contentType)?_sort=\(sortingKey):\(sortingValue)")
+		XCTAssertEqual(urlRequest!.url!.absoluteString, "http://\(host):\(port)/\(contentType)s?_sort=\(sortingKey):\(sortingValue)")
 		XCTAssertEqual(urlRequest!.allHTTPHeaderFields, ["Content-Type": "application/json; charset=utf-8"])
 		XCTAssertNil(urlRequest!.jsonString)
 	}

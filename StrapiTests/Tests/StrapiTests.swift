@@ -160,12 +160,84 @@ class StrapiTests: XCTestCase {
 		XCTAssertNil(task)
 	}
 	
+	// MARK: - Files
+	
+	func testFileUpload() {
+		let host = "localhost"
+		let port = 1337
+		let strapi = Strapi(scheme: "http", host: host, port: port)
+		let task = strapi.upload(
+			contentType: "restaurant",
+			id: 1,
+			field: "photo",
+			path: "path",
+			filename: "filename",
+			mimeType: "text",
+			fileData: "test".data(using: .utf8)!,
+			needAuthentication: false,
+			callback: { _ in }
+		)
+		XCTAssertNotNil(task)
+	}
+	
+	func testInvalidTokenFileUpload() {
+		let host = "localhost"
+		let port = 1337
+		let strapi = Strapi(scheme: "http", host: host, port: port)
+		let task = strapi.upload(
+			contentType: "restaurant",
+			id: 1,
+			field: "photo",
+			path: "path",
+			filename: "filename",
+			mimeType: "text",
+			fileData: "test".data(using: .utf8)!,
+			needAuthentication: true,
+			callback: { _ in }
+		)
+		XCTAssertNil(task)
+	}
+	
+	func testImageUpload() {
+		let host = "localhost"
+		let port = 1337
+		let strapi = Strapi(scheme: "http", host: host, port: port)
+		let task = strapi.upload(
+			contentType: "restaurant",
+			id: 1,
+			field: "photo",
+			path: "path",
+			image: UIImage(color: .blue, size: CGSize(width: 10, height: 10)),
+			compressionQuality: 90,
+			needAuthentication: false,
+			callback: { _ in }
+		)
+		XCTAssertNotNil(task)
+	}
+	
+	func testInvalidTokenImageUpload() {
+		let host = "localhost"
+		let port = 1337
+		let strapi = Strapi(scheme: "http", host: host, port: port)
+		let task = strapi.upload(
+			contentType: "restaurant",
+			id: 1,
+			field: "photo",
+			path: "path",
+			image: UIImage(color: .blue, size: CGSize(width: 10, height: 10)),
+			compressionQuality: 90,
+			needAuthentication: true,
+			callback: { _ in }
+		)
+		XCTAssertNil(task)
+	}
+	
 	// MARK: - Edge cases
 	
 	func testRequestWithoutTokenNeedingAuthorization() {
 		let strapi = Strapi(scheme: "https", host: "localhost", port: 1337)
 		let request = QueryRequest(
-			contentType: "restaurants"
+			contentType: "restaurant"
 		)
 		let task = strapi.exec(request: request, needAuthentication: true) { _ in }
 		XCTAssertNil(task)
@@ -185,7 +257,7 @@ class StrapiTests: XCTestCase {
 		let testExpectation = self.expectation(description: "Tests")
 		let strapi = Strapi(scheme: "https", host: "localhost", port: 1337)
 		let request = QueryRequest(
-			contentType: "restaurants"
+			contentType: "restaurant"
 		)
 		let task = strapi.exec(request: request, needAuthentication: false) { response in
 			XCTAssertEqual(response.code, -1)
@@ -202,7 +274,7 @@ class StrapiTests: XCTestCase {
 		let testExpectation = self.expectation(description: "Tests")
 		let strapi = Strapi(scheme: "http", host: "google.com")
 		let request = QueryRequest(
-			contentType: "restaurants"
+			contentType: "restaurant"
 		)
 		let task = strapi.exec(request: request, needAuthentication: false) { response in
 			XCTAssertEqual(response.code, 404)

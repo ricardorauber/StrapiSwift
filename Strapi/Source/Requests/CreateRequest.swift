@@ -8,6 +8,6 @@ public class CreateRequest: Request {
 	///   - contentType: Strapi Content Type
 	///   - parameters: Body of the request
 	public init(contentType: String, parameters: [String: Codable]) {
-		super.init(method: Method.POST, contentType: contentType, parameters: parameters)
+		super.init(method: Method.POST, contentType: contentType + "s", parameters: parameters)
 	}
 }
