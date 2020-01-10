@@ -2,11 +2,20 @@
 
 This project was built to make it easier to connect your app to your Strapi backend, the open source Headless CMS Front-End Developers love, see more at [https://strapi.io/](https://strapi.io/)
 
+## Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [User Session](#usersession)
+- [Upload](#upload)
+- [Error Handling](#errorhandling)
+- [License](#license)
+
 ## Installation
 
 ### CocoaPods
 
-[CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate Alamofire into your Xcode project using CocoaPods, specify it in your `Podfile`:
+[CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate Strapi-iOS into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
 pod 'Strapi-iOS'
@@ -14,7 +23,7 @@ pod 'Strapi-iOS'
 
 ## Usage
 
-### Start service
+### Start the Service
 
 To start the service, you need to specify your Strpi host in the Strapi instance. In a general usage, you will add this information at launch time, in the AppDelegate class:
 
@@ -37,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 ```
 
-### Default routes for content types
+### Default routes for Content Types
 
 When you create a content type on Strapi, it will automatically generate a bunch of routes (REST APIs) for that content type, such as create records, read records, update records and destroy records. Sounds familiar? Yes, it has a full CRUD right away! This is one of the amazing things Strapi does. So, Strapi-iOS has all of those requests covered, please see below. 
 
@@ -75,9 +84,7 @@ Let's say we want to know how many records we have in this content type, we can 
 ```swift
 let strapi = Strapi.shared
 
-let request = CountRequest(
-	contentType: "restaurant"
-)
+let request = CountRequest(contentType: "restaurant")
 
 strapi.exec(request: request, needAuthentication: false) { response in
 	guard let count = response.data as? Int else {
@@ -179,7 +186,7 @@ let strapi = Strapi.shared
 
 let request = Request(
 	method: "GET",
-	contentType: "restaurant", // You can use any route here
+	contentType: "restaurants", // You can use any route here
 	parameters: [
 		"price_eq": 3
 	]
@@ -197,7 +204,7 @@ strapi.exec(request: request, needAuthentication: false) { response in
 
 Strapi comes with some amazing plugins and one of them is to manage users and permissions. Here are some cool methods we have for it.
 
-#### User registration
+#### User Registration
 
 Right now, Strapi-iOS only works with the local provider for user registration. To do that, you can call it right from the Strapi instance:
 
@@ -258,7 +265,7 @@ let strapi = Strapi.shared
 
 strapi.resetPassword(
 	code: "somerandomcode",
-	password: "EvenStrongerPassword@2020"
+	password: "EvenStrongerPassword@2020",
 	passwordConfirmation: "EvenStrongerPassword@2020") { response in
 		
 	guard let record = response.data as? [String: Any] else {
@@ -300,9 +307,9 @@ strapi.me { response in
 
 ## User Session
 
-When you use the `login` method, it will automatically add the retrieved token to Strapi and add it on every request with the `needAuthentication` parameter set to `true` on the `exec` method.
+When you use the `login` method, it will automatically add the retrieved token on Strapi and it will add it on every request with the `needAuthentication` parameter set to `true` on the `exec` method.
 
-If you have a persistent session, you are probably saving the token somewhere else, so all you need to do is set the `token` property of the `Strapi` instance to add it on every request with `needAuthentication = true`.
+If you have a persistent session, you are probably saving the token somewhere, so all you need to do is set the `token` property of the `Strapi` instance to add it on every request with `needAuthentication = true`.
 
 ```swift
 let strapi = Strapi.shared
@@ -311,7 +318,7 @@ strapi.token = "Some_Token_Received_On_Login"
 
 ## Upload
 
-Another great plugin is Upload where you can upload files to your Strapi server and create a relation with your record. For instance, is really easy to send an audio for a message in a chat app.
+Another great plugin is Upload where you can upload files to your Strapi server and create a relation with your record. For instance, it's really easy to send an audio for a message in a chat app.
 
 ### Data Upload
 
@@ -339,7 +346,7 @@ strapi.upload(
 
 ### Image Upload
 
-As we usually do a lot of image uploading, like updating your profile picture, we have a convenience method to do that:
+As we usually do a lot of image uploading, like updating your profile picture, we have a convenience method for that:
 
 ```swift
 let strapi = Strapi.shared
@@ -362,7 +369,7 @@ strapi.upload(
 
 ## Error Handling
 
-Yes, unfortunately errors can happen, but we can cover some of them. The `reponse` object has an `error` property that will be set when some non-content error happen, like a `500 status` returned from the server, for instance. All you need to do is check it:
+Yes, unfortunately errors can happen, but we can cover some of them. The `response` object has an `error` property that will be set when some non-content error happen, like a `500 status` returned from the server, for instance. All you need to do is check it:
 
 ```swift
 strapi.exec(request: request, needAuthentication: false) { response in
