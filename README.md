@@ -6,9 +6,9 @@ This project was built to make it easier to connect your app to your Strapi back
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [User Session](#usersession)
+- [User Session](#user-session)
 - [Upload](#upload)
-- [Error Handling](#errorhandling)
+- [Error Handling](#error-handling)
 - [License](#license)
 
 ## Installation
