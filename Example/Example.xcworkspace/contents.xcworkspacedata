@@ -5,6 +5,9 @@
       location = "group:../README.md">
    </FileRef>
    <FileRef
+      location = "group:/Users/ricardorauberpereira/Projetos/strapi-ios/Strapi-iOS.podspec">
+   </FileRef>
+   <FileRef
       location = "group:Example.xcodeproj">
    </FileRef>
    <FileRef
