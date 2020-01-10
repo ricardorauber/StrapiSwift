@@ -6,6 +6,7 @@ class IntegrationTests: XCTestCase {
 	// MARK: - Settings
 	
 	let contentType = "restaurant"
+	//let strapi = Strapi(scheme: "http", host: "localhost", port: 1337)
 	let strapi = Strapi(scheme: "https", host: "strapi-ios.herokuapp.com")
 	let timeout: TimeInterval = 2
 	
@@ -34,8 +35,9 @@ class IntegrationTests: XCTestCase {
 		fetchRestaurant(id: restaurantId, name: restaurantName, price: restaurantPrice)
 		restaurantPrice = 5
 		updateRestaurant(id: restaurantId, price: restaurantPrice)
-		uploadPhoto(id: restaurantId)
+		let photoId = uploadPhoto(id: restaurantId)
 		fetchRestaurant(id: restaurantId, name: restaurantName, price: restaurantPrice)
+		destroyPhoto(id: photoId)
 		destroyRestaurant(id: restaurantId)
 		
 		destroyUser(id: userId)
@@ -262,11 +264,12 @@ class IntegrationTests: XCTestCase {
 		XCTAssertEqual(waiterResult, .completed)
 	}
 	
-	func uploadPhoto(id: Int) {
+	func uploadPhoto(id: Int) -> Int {
 		let testExpectation = self.expectation(description: "Tests")
 		let field = "photo"
 		let image = UIImage(color: .blue, size: CGSize(width: 100, height: 100))
 		let quality: CGFloat = 0.85
+		var photoId: Int?
 		
 		let task = strapi.upload(
 			contentType: contentType,
@@ -283,14 +286,15 @@ class IntegrationTests: XCTestCase {
 						XCTFail("Could not serialize the response")
 						return
 				}
-				let id = object["id"] as? Int
-				XCTAssertNotNil(id)
+				photoId = object["id"] as? Int
 				testExpectation.fulfill()
 		}
 		
 		XCTAssertNotNil(task)
 		let waiterResult = XCTWaiter.wait(for: [testExpectation], timeout: timeout)
 		XCTAssertEqual(waiterResult, .completed)
+		XCTAssertNotNil(photoId)
+		return photoId!
 	}
 	
 	func destroyRestaurant(id: Int) {
@@ -299,6 +303,33 @@ class IntegrationTests: XCTestCase {
 		let request = DestroyRequest(
 			contentType: contentType,
 			id: id
+		)
+		
+		let task = strapi.exec(request: request, needAuthentication: true) { response in
+			XCTAssertNil(response.error)
+			XCTAssertNotNil(response.data)
+			guard let object = response.data as? [String: Any],
+				let destroyedId = object["id"] as? Int
+				else {
+					XCTFail("Could not serialize the response")
+					return
+			}
+			XCTAssertEqual(destroyedId, id)
+			testExpectation.fulfill()
+		}
+		
+		XCTAssertNotNil(task)
+		let waiterResult = XCTWaiter.wait(for: [testExpectation], timeout: timeout)
+		XCTAssertEqual(waiterResult, .completed)
+	}
+	
+	func destroyPhoto(id: Int) {
+		let testExpectation = self.expectation(description: "Tests")
+		
+		let request = Request(
+			method: Method.DELETE,
+			contentType: "upload",
+			path: "/files/\(id)"
 		)
 		
 		let task = strapi.exec(request: request, needAuthentication: true) { response in

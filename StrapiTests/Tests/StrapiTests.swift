@@ -160,7 +160,7 @@ class StrapiTests: XCTestCase {
 		XCTAssertNil(task)
 	}
 	
-	// MARK: - Files
+	// MARK: - Upload
 	
 	func testFileUpload() {
 		let host = "localhost"

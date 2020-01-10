@@ -22,8 +22,10 @@ public class Strapi {
 	
 	// MARK: - Static Properties
 	
+	/// Shared instance of Strapi
 	public static var shared: Strapi = Strapi(scheme: "http", host: "")
 	
+	/// Default callback closure
 	public typealias StrapiCallback = (Response) -> Void
 	
 	// MARK: - Initialization
