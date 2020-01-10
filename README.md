@@ -46,6 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		// Setup the shared Strapi instance
 		let strapi = Strapi.shared
+		strapi.scheme = "http"
 		strapi.host = "localhost"
 		strapi.port = 1337
 		
