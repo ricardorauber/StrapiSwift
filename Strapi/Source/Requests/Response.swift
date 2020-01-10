@@ -4,13 +4,13 @@ import Foundation
 public struct Response {
 	
 	/// HTTP status code
-	var code: Int
+	public var code: Int
 	
 	/// Error if happened
-	var error: Error?
+	public var error: Error?
 	
 	/// Response data
-	var data: Any?
+	public var data: Any?
 	
 	/// Instantiate a new object
 	/// - Parameters:

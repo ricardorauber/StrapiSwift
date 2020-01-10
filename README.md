@@ -28,7 +28,7 @@ pod 'Strapi-iOS'
 To use Strapi-iOS you just need to import the package:
 
 ```swift
-import Strapi
+import Strapi_iOS
 ```
 
 ### Start the Service
@@ -37,7 +37,7 @@ To start the service, you need to specify your Strpi host in the Strapi instance
 
 ```swift
 import UIKit
-import Strapi
+import Strapi_iOS
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
