@@ -35,7 +35,7 @@ public class Request {
 				contentType: String,
 				path: String? = nil,
 				parameters: [String: Codable]? = nil) {
-		self.method = method
+		self.method = method.uppercased()
 		self.contentType = contentType
 		self.path = path
 		if let parameters = parameters {
@@ -72,7 +72,7 @@ public class Request {
 	/// Removes all stored parameters for GET requests
 	public func removeAllFilters() {
 		guard method == Method.GET else { return }
-		parameters.removeAll()
+		removeAllParameters()
 	}
 	
 	/// Sets a "equal to" filter for a GET request

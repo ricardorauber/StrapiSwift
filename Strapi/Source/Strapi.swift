@@ -158,6 +158,7 @@ public class Strapi {
 	///   - contentType: Content type
 	///   - id: Id of the record
 	///   - field: Field of the content type
+	///   - source: Source
 	///   - path: Path for AWS
 	///   - filename: Name of the file
 	///   - mimeType: Mime type of the file
@@ -168,6 +169,7 @@ public class Strapi {
 	public func upload(contentType: String,
 					   id: Int,
 					   field: String,
+					   source: String,
 					   path: String? = nil,
 					   filename: String,
 					   mimeType: String,
@@ -194,7 +196,8 @@ public class Strapi {
 		var parameters: [String: Codable] = [
 			"ref": contentType,
 			"refId": id,
-			"field": field
+			"field": field,
+			"source": source
 		]
 		if let path = path {
 			parameters["path"] = path
@@ -227,6 +230,7 @@ public class Strapi {
 	///   - contentType: Content type
 	///   - id: Id of the record
 	///   - field: Field of the content type
+	///   - source: Source
 	///   - path: Path for AWS
 	///   - image: UIImage to be uploaded
 	///   - quality: Quality of the JPG compression
@@ -236,6 +240,7 @@ public class Strapi {
 	public func upload(contentType: String,
 					   id: Int,
 					   field: String,
+					   source: String,
 					   path: String? = nil,
 					   image: UIImage,
 					   compressionQuality quality: CGFloat,
@@ -249,6 +254,7 @@ public class Strapi {
 			contentType: contentType,
 			id: id,
 			field: field,
+			source: source,
 			path: path,
 			filename: "image.jpg",
 			mimeType: "image/jpg",

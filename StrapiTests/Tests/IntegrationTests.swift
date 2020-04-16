@@ -267,6 +267,7 @@ class IntegrationTests: XCTestCase {
 	func uploadPhoto(id: Int) -> Int {
 		let testExpectation = self.expectation(description: "Tests")
 		let field = "photo"
+		let source = "source"
 		let image = UIImage(color: .blue, size: CGSize(width: 100, height: 100))
 		let quality: CGFloat = 0.85
 		var photoId: Int?
@@ -275,6 +276,7 @@ class IntegrationTests: XCTestCase {
 			contentType: contentType,
 			id: id,
 			field: field,
+			source: source,
 			image: image,
 			compressionQuality: quality,
 			needAuthentication: true) { response in
