@@ -1,73 +1,73 @@
-# Strapi iOS
+# StrapiSwift - A Swift toolkit to connect with your Strapi backend
 
-This project was built to make it easier to connect your app to your Strapi backend, the open source Headless CMS Front-End Developers love, see more at [https://strapi.io/](https://strapi.io/)
+[![Build Status](https://travis-ci.com/ricardorauber/StrapiSwift.svg?branch=master)](http://travis-ci.com/)
+[![CocoaPods Version](https://img.shields.io/cocoapods/v/StrapiSwift.svg?style=flat)](http://cocoadocs.org/docsets/StrapiSwift)
+[![License](https://img.shields.io/cocoapods/l/StrapiSwift.svg?style=flat)](http://cocoadocs.org/docsets/StrapiSwift)
+[![Platform](https://img.shields.io/cocoapods/p/StrapiSwift.svg?style=flat)](http://cocoadocs.org/docsets/StrapiSwift)
 
-## Contents
+This project was built to make it easier to connect your app to your `Strapi` backend, the open source Headless CMS Front-End Developers love, see more at [https://strapi.io/](https://strapi.io/)
 
-- [Installation](#installation)
-- [Usage](#usage)
-- [User Session](#user-session)
-- [Upload](#upload)
-- [Error Handling](#error-handling)
-- [License](#license)
+## Setup
 
-## Installation
+This project has dependencies:
 
-### CocoaPods
+- [KeyValueStorage: A key-value storage module for Swift projects](https://github.com/ricardorauber/KeyValueStorage)
+- [RestService - A light REST service framework for iOS projects](https://github.com/ricardorauber/RestService)
 
-[CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate Strapi-iOS into your Xcode project using CocoaPods, specify it in your `Podfile`:
+#### CocoaPods
+
+If you are using CocoaPods, add this to your Podfile and run `pod install`.
 
 ```ruby
-pod 'Strapi-iOS'
+target 'Your target name' do
+  pod 'StrapiSwift', '~> 1.0'
+end
 ```
+
+#### Manual Installation
+
+If you want to add it manually to your project, without a package manager, just copy all files from the `Classes` folder to your project.
+
+You have to install the dependencies as well. Please follow their  instructions.
 
 ## Usage
 
-### Import Strapi-iOS
+### Import StrapiSwift
 
-To use Strapi-iOS you just need to import the package:
+To use `StrapiSwift` you just need to import the package:
 
 ```swift
-import Strapi_iOS
+import StrapiSwift
 ```
 
 ### Start the Service
 
-To start the service, you need to specify your Strpi host in the Strapi instance. In a general usage, you will add this information at launch time, in the AppDelegate class:
+To start the service, you need to specify your `Strapi` host in the `Strapi` instance:
 
 ```swift
-import UIKit
-import Strapi_iOS
+let strapi = Strapi(scheme: .http, host: "localhost", port: 1337)
+```
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+But you can use the shared instance as well:
 
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-		
-		// Setup the shared Strapi instance
-		let strapi = Strapi.shared
-		strapi.scheme = "http"
-		strapi.host = "localhost"
-		strapi.port = 1337
-		
-		return true
-	}
-}
+```swift
+let strapi = Strapi.shared
+strapi.scheme = .http
+strapi.host = "localhost"
+strapi.port = 1337
 ```
 
 ### Default routes for Content Types
 
-When you create a content type on Strapi, it will automatically generate a bunch of routes (REST APIs) for that content type, such as create records, read records, update records and destroy records. Sounds familiar? Yes, it has a full CRUD right away! This is one of the amazing things Strapi does. So, Strapi-iOS has all of those requests covered, please see below. 
+When you create a content type on `Strapi`, it will automatically generate a bunch of routes (`REST APIs`) for that content type, such as create records, read records, update records and destroy records. Sounds familiar? Yes, it has a full `CRUD` right away! This is one of the amazing things `Strapi` does. So, `StrapiSwift` has all of those requests covered, please see below. 
 
-Let's say we have a content type named `Restaurant` with a `Name` and `Price` fields. Here are a few examples on how to integrate with it:
+Let's say we have a content type named `restaurant` with a `name` and `price` fields. Here are a few examples on how to integrate with it:
 
 #### CreateRequest (POST)
 
 To start or to grow our database, we can create some records:
 
 ```swift
-let strapi = Strapi.shared
-
 let request = CreateRequest(
 	contentType: "restaurant",
 	parameters: [
@@ -75,9 +75,8 @@ let request = CreateRequest(
 		"price": 3
 	]
 )
-
-strapi.exec(request: request, needAuthentication: false) { response in
-	guard let record = response.data as? [String: Any],
+strapi.exec(request: request) { response in
+	guard let record = response.dictionaryValue(),
 		let id = record["id"] as? Int
 		else {
 			return
@@ -91,12 +90,10 @@ strapi.exec(request: request, needAuthentication: false) { response in
 Let's say we want to know how many records we have in this content type, we can count them:
 
 ```swift
-let strapi = Strapi.shared
-
 let request = CountRequest(contentType: "restaurant")
 
-strapi.exec(request: request, needAuthentication: false) { response in
-	guard let count = response.data as? Int else {
+strapi.exec(request: request) { response in
+	guard let count = response.intValue() else {
 		return
 	}
 	print("Total records: \(count)")
@@ -108,15 +105,13 @@ strapi.exec(request: request, needAuthentication: false) { response in
 Now what you want is to search for all restaurants with some filters and sorting:
 
 ```swift
-let strapi = Strapi.shared
-
 let request = QueryRequest(contentType: "restaurant")
 request.filter(by: "name", contains: "pizza")
 request.filter(by: "price", greaterThanOrEqualTo: 3)
 request.sort(by: "price")
 
-strapi.exec(request: request, needAuthentication: false) { response in
-	guard let list = response.data as? [[String: Any]] else {
+strapi.exec(request: request) { response in
+	guard let list = response.decodableValue(of: [Restaurant].self) else {
 		return
 	}
 	print("Records found: \(list)")
@@ -128,15 +123,13 @@ strapi.exec(request: request, needAuthentication: false) { response in
 Sometimes we have just the `id` of a record and we need to get all its information. For that, we can fetch the record by the id:
 
 ```swift
-let strapi = Strapi.shared
-
 let request = FetchRequest(
 	contentType: "restaurant",
 	id: 10
 )
 
-strapi.exec(request: request, needAuthentication: false) { response in
-	guard let record = response.data as? [String: Any] else {
+strapi.exec(request: request) { response in
+	guard let record = response.decodableValue(of: Restaurant.self) else {
 		return
 	}
 	print("Data retrieved: \(record)")
@@ -148,8 +141,6 @@ strapi.exec(request: request, needAuthentication: false) { response in
 Wrong price range? No problem, we can update the record:
 
 ```swift
-let strapi = Strapi.shared
-
 let request = UpdateRequest(
 	contentType: "restaurant",
 	id: 10,
@@ -158,8 +149,8 @@ let request = UpdateRequest(
 	]
 )
 
-strapi.exec(request: request, needAuthentication: false) { response in
-	guard let record = response.data as? [String: Any] else {
+strapi.exec(request: request) { response in
+	guard let record = response.decodableValue(of: Restaurant.self) else {
 		return
 	}
 	print("Updated record: \(record)")
@@ -171,15 +162,13 @@ strapi.exec(request: request, needAuthentication: false) { response in
 Oh dear, I loved that restaurant! I am sorry that you want to destroy it, but this is how you can do it:
 
 ```swift
-let strapi = Strapi.shared
-
 let request = DestroyRequest(
 	contentType: "restaurant",
 	id: 10
 )
 
-strapi.exec(request: request, needAuthentication: false) { response in
-	guard let record = response.data as? [String: Any] else {
+strapi.exec(request: request) { response in
+	guard let record = response.dictionaryValue() else {
 		return
 	}
 	print("Destroyed record: \(record)")
@@ -191,18 +180,16 @@ strapi.exec(request: request, needAuthentication: false) { response in
 So you want to create your custom request because you have a custom route or just want to do it by yourself, here is how you can do it:
 
 ```swift
-let strapi = Strapi.shared
-
-let request = Request(
-	method: "GET",
+let request = StrapiRequest(
+	method: .get,
 	contentType: "restaurants", // You can use any route here
 	parameters: [
 		"price_eq": 3
 	]
 )
 
-strapi.exec(request: request, needAuthentication: false) { response in
-	guard let list = response.data as? [[String: Any]] else {
+strapi.exec(request: request) { response in
+	guard let list = response.decodableValue(of: [Restaurant].self) else {
 		return
 	}
 	print("Data retrieved: \(list)")
@@ -211,21 +198,19 @@ strapi.exec(request: request, needAuthentication: false) { response in
 
 ### Users - Permissions
 
-Strapi comes with some amazing plugins and one of them is to manage users and permissions. Here are some cool methods we have for it.
+`Strapi` comes with some amazing plugins and one of them is to manage users and permissions. Here are some cool methods we have for it.
 
 #### User Registration
 
-Right now, Strapi-iOS only works with the local provider for user registration. To do that, you can call it right from the Strapi instance:
+Right now, `StrapiSwift` only works with the local provider for user registration. To do that, you can call it right from the `Strapi` instance:
 
 ```swift
-let strapi = Strapi.shared
-
 strapi.register(
 	username: "My name",
 	email: "my@email.com",
 	password: "VeryStrongPassword@2020") { response in
 			
-	guard let record = response.data as? [String: Any] else {
+	guard let record = response.decodableValue(of: User.self) else {
 		return
 	}
 	print("New user: \(record)")
@@ -237,13 +222,11 @@ strapi.register(
 With the user confirmed, you can easily log in:
 
 ```swift
-let strapi = Strapi.shared
-
 strapi.login(
 	identifier: "my@email.com",
 	password: "VeryStrongPassword@2020") { response in
 			
-	guard let record = response.data as? [String: Any] else {
+	guard let record = response.decodableValue(of: User.self) else {
 		return
 	}
 	print("Logged in user: \(record)")
@@ -255,10 +238,8 @@ strapi.login(
 If you don't remember your password, here is how you can request an email to reset the password:
 
 ```swift
-let strapi = Strapi.shared
-
 strapi.forgotPassword(email: "my@email.com") { response in
-	guard let record = response.data as? [String: Any] else {
+	guard let record = response.dictionaryValue() else {
 		return
 	}
 	print("Some data: \(record)")
@@ -270,14 +251,12 @@ strapi.forgotPassword(email: "my@email.com") { response in
 After receiving the email with the code to reset the password, this is how you can reset it:
 
 ```swift
-let strapi = Strapi.shared
-
 strapi.resetPassword(
 	code: "somerandomcode",
 	password: "EvenStrongerPassword@2020",
 	passwordConfirmation: "EvenStrongerPassword@2020") { response in
 		
-	guard let record = response.data as? [String: Any] else {
+	guard let record = response.dictionaryValue() else {
 		return
 	}
 	print("Some data: \(record)")
@@ -289,10 +268,8 @@ strapi.resetPassword(
 Hmm, didn't receive the email confirmation? You can ask for it again with this:
 
 ```swift
-let strapi = Strapi.shared
-
 strapi.sendEmailConfirmation(email: "my@email.com") { response in
-	guard let record = response.data as? [String: Any] else {
+	guard let record = response.dictionaryValue() else {
 		return
 	}
 	print("Some data: \(record)")
@@ -301,13 +278,11 @@ strapi.sendEmailConfirmation(email: "my@email.com") { response in
 
 ### Me
 
-Now you just want to retrieve your own data (User), it is easy as well:
+Now you just want to retrieve your own data (`User`), it is easy as well:
 
 ```swift
-let strapi = Strapi.shared
-
 strapi.me { response in
-	guard let record = response.data as? [String: Any] else {
+	guard let record = response.decodableValue(of: User.self) else {
 		return
 	}
 	print("My data: \(record)")
@@ -316,25 +291,40 @@ strapi.me { response in
 
 ## User Session
 
-When you use the `login` method, it will automatically add the retrieved token on Strapi and it will add it on every request with the `needAuthentication` parameter set to `true` on the `exec` method.
+When you use the `login` method, it will automatically save the retrieved token. If you didn't change the `storage` property, it will save the token on your `Keychain`.
 
-If you have a persistent session, you are probably saving the token somewhere, so all you need to do is set the `token` property of the `Strapi` instance to add it on every request with `needAuthentication = true`.
+If you need to set this token in a request, you can set the `interceptor` parameter with a `StrapiAuthorizationInterceptor` instance on the `strapi.exec(...)` method:
 
 ```swift
-let strapi = Strapi.shared
-strapi.token = "Some_Token_Received_On_Login"
+let request = StrapiRequest(
+	method: .get,
+	contentType: "restaurants", // You can use any route here
+	parameters: [
+		"price_eq": 3
+	]
+)
+
+let interceptor = StrapiAuthorizationInterceptor(storage: strapi.storage)
+
+strapi.exec(request: request, interceptor: interceptor) { response in
+	guard let list = response.decodableValue(of: [Restaurant].self) else {
+		return
+	}
+	print("Data retrieved: \(list)")
+}
 ```
+
+You can create your own `interceptor`, just follow the instructions on the [RestService](https://github.com/ricardorauber/RestService) framework.
 
 ## Upload
 
-Another great plugin is Upload where you can upload files to your Strapi server and create a relation with your record. For instance, it's really easy to send an audio for a message in a chat app.
+Another great plugin is `Upload` where you can upload files to your `Strapi` server and create a relation with your record. For instance, it's really easy to send an audio for a message in a chat app.
 
 ### Data Upload
 
 Let's upload a text file for a record:
 
 ```swift
-let strapi = Strapi.shared
 let text = "..."
 
 strapi.upload(
@@ -343,10 +333,9 @@ strapi.upload(
 	field: "terms",
 	filename: "terms.txt",
 	mimeType: "text/plain",
-	fileData: text.data(using: .utf8)!,
-	needAuthentication: false) { response in
+	fileData: text.data(using: .utf8)!) { response in
 	
-	guard let record = response.data as? [String: Any] else {
+	guard let record = response.dictionaryValue() else {
 		return
 	}
 	print("Some data: \(record)")
@@ -358,7 +347,6 @@ strapi.upload(
 As we usually do a lot of image uploading, like updating your profile picture, we have a convenience method for that:
 
 ```swift
-let strapi = Strapi.shared
 let image = UIImage(...)
 
 strapi.upload(
@@ -366,10 +354,9 @@ strapi.upload(
 	id: 1,
 	field: "terms",
 	image: image,
-	compressionQuality: 90,
-	needAuthentication: false) { response in
+	compressionQuality: 90) { response in
 	
-	guard let record = response.data as? [String: Any] else {
+	guard let record = response.dictionaryValue() else {
 		return
 	}
 	print("Some data: \(record)")
@@ -381,15 +368,34 @@ strapi.upload(
 Yes, unfortunately errors can happen, but we can cover some of them. The `response` object has an `error` property that will be set when some non-content error happen, like a `500 status` returned from the server, for instance. All you need to do is check it:
 
 ```swift
-strapi.exec(request: request, needAuthentication: false) { response in
+strapi.exec(request: request) { response in
 	if let error = response.error {
-		// Oh no, something went wrong :(
+		// There was a connection failure
+		print(error)
+		return
+	if let error = response.strapiError() {
+		// Oh no, something went wrong with your data :(
+		print(error)
 		return
 	}
 	// Cool, no errors!
 }
 ```
 
+## Thanks 👍
+
+The creation of this framework was possible thanks to these awesome people:
+
+* Gray Company: [https://www.graycompany.com.br/](https://www.graycompany.com.br/)
+* Strapi: [https://strapi.io/](https://strapi.io/)
+* Swift by Sundell: [https://www.swiftbysundell.com/](https://www.swiftbysundell.com/)
+* Hacking with Swift: [https://www.hackingwithswift.com/](https://www.hackingwithswift.com/)
+* Ricardo Rauber: [http://ricardorauber.com/](http://ricardorauber.com/)
+
+## Feedback is welcome
+
+If you notice any issue, got stuck or just want to chat feel free to create an issue. We will be happy to help you.
+
 ## License
 
-Strapi iOS is released under the MIT license. [See LICENSE](https://github.com/ricardorauber/strapi-ios/blob/master/LICENSE) for details.
+StrapiSwift is released under the [MIT License](LICENSE).
