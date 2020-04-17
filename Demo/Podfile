@@ -1,0 +1,5 @@
+target 'Demo' do
+  platform :ios, '12.4'
+
+  pod 'StrapiSwift', :path => '../', :testspecs => ['Tests']
+end

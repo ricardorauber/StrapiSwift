@@ -1,0 +1,55 @@
+PODS:
+  - KeyValueStorage (1.0.0)
+  - Nimble (8.0.7)
+  - OHHTTPStubs/Core (9.0.0)
+  - OHHTTPStubs/Default (9.0.0):
+    - OHHTTPStubs/Core
+    - OHHTTPStubs/JSON
+    - OHHTTPStubs/NSURLSession
+    - OHHTTPStubs/OHPathHelpers
+  - OHHTTPStubs/JSON (9.0.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/NSURLSession (9.0.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/OHPathHelpers (9.0.0)
+  - OHHTTPStubs/Swift (9.0.0):
+    - OHHTTPStubs/Default
+  - Quick (2.2.0)
+  - RestService (1.0.1)
+  - StrapiSwift (1.0.0):
+    - KeyValueStorage (= 1.0.0)
+    - RestService (= 1.0.1)
+  - StrapiSwift/Tests (1.0.0):
+    - KeyValueStorage (= 1.0.0)
+    - Nimble (= 8.0.7)
+    - OHHTTPStubs/Swift (= 9.0.0)
+    - Quick (= 2.2.0)
+    - RestService (= 1.0.1)
+
+DEPENDENCIES:
+  - StrapiSwift (from `../`)
+  - StrapiSwift/Tests (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - KeyValueStorage
+    - Nimble
+    - OHHTTPStubs
+    - Quick
+    - RestService
+
+EXTERNAL SOURCES:
+  StrapiSwift:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  KeyValueStorage: 430a4401e10091520b71733b6d60313c535163ed
+  Nimble: a73af6ecd4c9106f434f3d55fc54570be3739e0b
+  OHHTTPStubs: cb29d2a9d09a828ecb93349a2b0c64f99e0db89f
+  Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
+  RestService: 313a26e7bb24c9a5c134f08dace5bd73c9227f60
+  StrapiSwift: e9731a653a5a27a1e61da019ecdff04b04749afa
+
+PODFILE CHECKSUM: 16917e9eb145b1565e967cbed863efc466436789
+
+COCOAPODS: 1.9.1
