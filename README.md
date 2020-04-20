@@ -365,7 +365,7 @@ strapi.upload(
 
 ## Error Handling
 
-Yes, unfortunately errors can happen, but we can cover some of them. The `response` object has an `error` property that will be set when some non-content error happen, like a `500 status` returned from the server, for instance. All you need to do is check it:
+Yes, unfortunately errors can happen, but we can cover some of them. The `response` object has an `error` property that will be set when some non-content error happen, like a `500 status` returned from the server. Also, your `Strapi` backend could send some custom error messages in the body of the response, for that you can check the `strapiError()` method. All you need to do is this:
 
 ```swift
 strapi.exec(request: request) { response in
@@ -380,6 +380,33 @@ strapi.exec(request: request) { response in
 	}
 	// Cool, no errors!
 }
+```
+
+## ContentType
+
+There is also a special object called `ContentType `. As you can see, it is very simple:
+
+```Swift
+struct ContentType: RawRepresentable, Equatable, Hashable {
+	typealias RawValue = String
+	let rawValue: String
+	init(rawValue: String) {
+		self.rawValue = rawValue
+	}
+}
+```
+
+With `ContentType` you can create `static` properties to avoid using string in your calls. You can use these properties to make requests:
+
+```Swift
+extension ContentType {
+	static let restaurant = RestPath(rawValue: "restaurant")
+}
+
+let request = FetchRequest(
+	contentType: .restaurant,
+	id: 10
+)
 ```
 
 ## Thanks 👍
