@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.license               = 'MIT'
   s.homepage              = 'http://ricardorauber.com'
   s.source                = { :git => 'https://github.com/ricardorauber/StrapiSwift.git', :tag => s.version }
-  s.summary               = 'A Swift toolkit to connect with your Strapi backend'
+  s.summary               = 'A Swift toolkit to connect to your Strapi backend'
   s.pod_target_xcconfig   = { 'ENABLE_TESTABILITY' => 'YES' }
   s.source_files          = 'Classes/**/*'
 

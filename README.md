@@ -382,6 +382,15 @@ strapi.exec(request: request) { response in
 }
 ```
 
+The `strapiError()` method will return an instance of the `StrapiError` model. This object has a few useful properties:
+
+- statusCode: (`Int`) Status code given in the response body
+- error: (`String`) Error text given in the response body
+- response: (`Data?`) Original response from the server
+- message: (`String?`) Text message when the `message` field is a `String` in the response body
+- messages: (`[StrapiMessage]`) A list of messages when the `message` field is an `Array` in the response body
+- data: (`Any?`) Content of the `data` field from the response body
+
 ## ContentType
 
 There is also a special object called `ContentType `. As you can see, it is very simple:

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		47C78C6D2448CAAC00407841 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C78C6C2448CAAC00407841 /* AppDelegate.swift */; };
-		47C78C6F2448CAAC00407841 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C78C6E2448CAAC00407841 /* SceneDelegate.swift */; };
 		47C78C712448CAAC00407841 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C78C702448CAAC00407841 /* ViewController.swift */; };
 		47C78C742448CAAC00407841 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47C78C722448CAAC00407841 /* Main.storyboard */; };
 		47C78C762448CAB200407841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47C78C752448CAB200407841 /* Assets.xcassets */; };
@@ -20,7 +19,6 @@
 		1DC1228AF93412AFCEA67971 /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
 		47C78C692448CAAC00407841 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47C78C6C2448CAAC00407841 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		47C78C6E2448CAAC00407841 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		47C78C702448CAAC00407841 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		47C78C732448CAAC00407841 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		47C78C752448CAB200407841 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -72,7 +70,6 @@
 			isa = PBXGroup;
 			children = (
 				47C78C6C2448CAAC00407841 /* AppDelegate.swift */,
-				47C78C6E2448CAAC00407841 /* SceneDelegate.swift */,
 				47C78C702448CAAC00407841 /* ViewController.swift */,
 				47C78C722448CAAC00407841 /* Main.storyboard */,
 				47C78C752448CAB200407841 /* Assets.xcassets */,
@@ -88,7 +85,6 @@
 				4FE97B00C182144BA6E89649 /* Pods-Demo.debug.xcconfig */,
 				1DC1228AF93412AFCEA67971 /* Pods-Demo.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -191,7 +187,6 @@
 			files = (
 				47C78C712448CAAC00407841 /* ViewController.swift in Sources */,
 				47C78C6D2448CAAC00407841 /* AppDelegate.swift in Sources */,
-				47C78C6F2448CAAC00407841 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,7 +262,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -321,7 +316,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -339,6 +334,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4W8Y567J5C;
 				INFOPLIST_FILE = Demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -346,7 +342,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ricardorauber.opensource.strapiswift.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -358,6 +354,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4W8Y567J5C;
 				INFOPLIST_FILE = Demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -365,7 +362,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ricardorauber.opensource.strapiswift.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

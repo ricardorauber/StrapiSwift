@@ -4,6 +4,8 @@ public extension RestResponse {
 	
 	/// Converts the data into a Strapi default error message
 	func strapiError() -> StrapiError? {
-		return decodableValue(of: StrapiError.self)
+		var error = decodableValue(of: StrapiError.self)
+		error?.response = data
+		return error
 	}
 }

@@ -279,6 +279,76 @@ class StrapiTests: QuickSpec {
 					expect(completed).toEventually(beTrue(), timeout: 1)
 				}
 			}
+			
+			context("errors") {
+				
+				beforeEach {
+					HTTPStubs.removeAllStubs()
+				}
+				
+				it("should get an error with a string message from the server") {
+					stub(condition: isHost("server.com")) { _ in
+						let response: [String: Any] = [
+							"statusCode": 403,
+							"error": "Forbidden",
+							"message": "Forbidden"
+						]
+						return HTTPStubsResponse(jsonObject: response, statusCode: 403, headers: nil)
+					}
+					var completed = false
+					let request = StrapiRequest(
+						method: .get,
+						contentType: "restaurant"
+					)
+					let task = strapi.exec(request: request) { response in
+						let error = response.strapiError()
+						expect(error).toNot(beNil())
+						expect(error?.statusCode) == 403
+						expect(error?.error) == "Forbidden"
+						expect(error?.message) == "Forbidden"
+						completed = true
+					}
+					expect(task).toNot(beNil())
+					expect(completed).toEventually(beTrue(), timeout: 1)
+				}
+				
+				it("should get an error with a list of messages from the server") {
+					stub(condition: isHost("server.com")) { _ in
+						let response: [String: Any] = [
+							"statusCode": 400,
+							"error": "Bad Request",
+							"message": [
+								[
+									"messages": [
+										[
+											"id": "Auth.form.error.invalid",
+											"message": "Identifier or password invalid."
+										]
+									]
+								]
+							]
+						]
+						return HTTPStubsResponse(jsonObject: response, statusCode: 400, headers: nil)
+					}
+					var completed = false
+					let request = StrapiRequest(
+						method: .get,
+						contentType: "restaurant"
+					)
+					let task = strapi.exec(request: request) { response in
+						let error = response.strapiError()
+						expect(error).toNot(beNil())
+						expect(error?.statusCode) == 400
+						expect(error?.error) == "Bad Request"
+						expect(error?.messages.count) == 1
+						expect(error?.messages.first?.id) == "Auth.form.error.invalid"
+						expect(error?.messages.first?.message) == "Identifier or password invalid."
+						completed = true
+					}
+					expect(task).toNot(beNil())
+					expect(completed).toEventually(beTrue(), timeout: 1)
+				}
+			}
 		}
 	}
 }
